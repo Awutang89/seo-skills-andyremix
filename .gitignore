@@ -1,0 +1,21 @@
+# Secrets — never commit real keys
+.env
+.env.local
+*.key
+.dataforseo-config.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Local brand memory written by skills at runtime
+brand/
