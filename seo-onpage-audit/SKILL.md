@@ -1,6 +1,6 @@
 ---
 name: seo-onpage-audit
-description: "Audit a live web page's on-page and technical SEO — title/meta, headings, keyword coverage (primary + secondary/long-tail), URLs, canonical, indexability, links, schema (present AND missing-but-qualifying), and Core Web Vitals thresholds. Native WebFetch, no crawler/Playwright infra. Works on ANY website — the target keyword is inferred from the page, no keyword list required. Optional site-level crawl pass (Firecrawl/Scrapling) for cross-page checks. Use to spot-check a published page, a client site, or before/after a change. Triggers on: audit this page, on-page SEO check, technical SEO, is this page optimized, check canonical/robots, core web vitals, CWV check, schema audit. Outputs a 0-100 score with a prioritized fix list."
+description: "Audit a live web page's on-page and technical SEO — title/meta, headings, keyword coverage (primary + secondary/long-tail), URLs, canonical, indexability, links, schema (present AND missing-but-qualifying), and Core Web Vitals thresholds. Native WebFetch, no crawler/Playwright infra. Works on ANY website — the target keyword is inferred from the page, no keyword list required. Optional site-level crawl pass (Firecrawl/Scrapling) for cross-page checks, including verifying every URL declares its own unique canonical. Use to spot-check a published page, a client site, or before/after a change. Triggers on: audit this page, on-page SEO check, technical SEO, is this page optimized, check canonical/robots, duplicate canonicals, canonical uniqueness, site-wide canonical check, core web vitals, CWV check, schema audit. Outputs a 0-100 score with a prioritized fix list."
 ---
 
 # On-Page & Technical SEO Audit (any website)
@@ -32,10 +32,10 @@ Companion skills, if present in your library: `seo-schema` (schema fixes), `imag
 | **URL / slug** | lowercase, hyphenated, concise, human-readable (not an ID); **no repeated keywords**; no redirect chains (max 1 hop) |
 | **Links** | internal count + even spacing (no two links within 200–300 words); descriptive/informative anchor text (not "click here"/bare URLs); external links point to authorities; paid/affiliate/UGC links carry `rel="sponsored/ugc/nofollow"`; no broken links |
 | **Schema** | JSON-LD present + valid types — AND recommend structured-data types the page **qualifies for but is missing** (content-signal based; see `references/schema-opportunities.md`) |
-| **Indexability** | canonical (self-referencing, absolute, matches URL); meta robots (no accidental `noindex`/`nofollow`); present in sitemap |
+| **Indexability** | canonical — exactly one, in `<head>`, absolute, self-referencing, character-for-character equal to the live URL; meta robots (no accidental `noindex`/`nofollow`); present in sitemap |
 | **Core Web Vitals** | thresholds + HTML heuristic flags (no field data without PSI/CrUX) |
 | **Images** | alt text present, ≤125 chars, descriptive, keyword-aware (basics only — deeper checks in `image-seo-audit`) |
-| **Cross-page** (site-level pass) | title/meta uniqueness; orphan pages; URL-structure consistency; inbound-link distribution |
+| **Cross-page** (site-level pass) | title/meta uniqueness; **canonical uniqueness — every URL must declare its own canonical, no two URLs sharing one target**; orphan pages; URL-structure consistency; inbound-link distribution |
 
 Full thresholds: `references/cwv-and-onpage.md`. Schema recommendation map: `references/schema-opportunities.md`.
 
@@ -52,7 +52,9 @@ Full thresholds: `references/cwv-and-onpage.md`. Schema recommendation map: `ref
    against these inferred targets — no external keyword list is assumed. If the page gives no clear
    keyword signal, say so (that itself is a finding: unfocused page).
 
-3. **Parse on-page elements:** `<title>`, meta description, canonical, meta robots, H1 (count +
+3. **Parse on-page elements:** `<title>`, meta description, **every `rel="canonical"` in the served
+   HTML** (count them — two conflicting tags means Google ignores both; one after `</head>` is
+   ignored too), meta robots, H1 (count +
    text + char length), H2–H6 outline, body word count + the first 100 words, internal vs external
    `<a>` (with `rel` values + anchor text), `<img>` alt/dimensions, every
    `<script type="application/ld+json">` block, and the URL slug.
@@ -73,8 +75,11 @@ Full thresholds: `references/cwv-and-onpage.md`. Schema recommendation map: `ref
    images, missing image dimensions → CLS, render-blocking third-party scripts). For real field
    numbers, note "run PageSpeed Insights for [url]" — not measurable from HTML alone.
 
-8. **Cross-page items.** Uniqueness, orphans, URL-structure consistency, and inbound-link
-   distribution cannot be proven from one URL. Emit them as INFO pointing to the **site-level pass**
+8. **Cross-page items.** Title/meta uniqueness, **canonical uniqueness**, orphans, URL-structure
+   consistency, and inbound-link distribution cannot be proven from one URL. A single page can only
+   show you that its canonical is *self-referencing* — it cannot show you that **no other URL claims
+   the same canonical**. A page can pass every single-URL canonical check and still be one of forty
+   URLs all pointing at the homepage. Never report canonical as fully PASS from a one-URL fetch. Emit them as INFO pointing to the **site-level pass**
    rather than a fake PASS.
 
 9. **Output** the 0–100 score, the per-category breakdown, a Critical→Low fix list, the Advisory
@@ -133,6 +138,8 @@ ADVISORY (subjective, unscored)
 - Two H2s ("Overview", "More Info") are decorative, not meaningful — rename to the subtopic.
 
 CROSS-PAGE (needs the optional site-level pass)
+- Canonical is self-referencing and exact on THIS URL — but whether any other URL claims the same
+  canonical is unproven from one fetch. Run the site-level pass.
 - Title/meta uniqueness, orphan status, URL-structure consistency, inbound-link distribution —
   run the site-level pass to verify.
 ```
@@ -141,10 +148,10 @@ CROSS-PAGE (needs the optional site-level pass)
 
 ## Optional: Site-Level Pass (cross-page items)
 
-Opt-in mode for the four items a single-URL fetch can't prove: **title/meta uniqueness**, **orphan
-pages**, **URL-structure consistency**, and **inbound-link distribution**. It is fully
-**crawl-based** — it crawls the *target* site and derives everything from that crawl. It reads no
-local files, so it works on any website.
+Opt-in mode for the items a single-URL fetch can't prove: **title/meta uniqueness**, **canonical
+uniqueness**, **orphan pages**, **URL-structure consistency**, and **inbound-link distribution**.
+It is fully **crawl-based** — it crawls the *target* site and derives everything from that crawl.
+It reads no local files, so it works on any website.
 
 **Getting the crawl (needs an API key from whoever runs the audit):**
 1. **Prefer a running Firecrawl MCP server** if one is available in the session — use its map +
@@ -156,15 +163,44 @@ local files, so it works on any website.
 3. **Scrapling** is a keyless local alternative for users who don't want an API key — swap it in as
    the fetcher; the analysis below is identical.
 
-**What it derives from the crawl (per page: `url`, `title`, `meta_description`, `internal_links[]`):**
+**What it derives from the crawl (per page: `url`, `title`, `meta_description`, `internal_links[]`,
+and the raw served HTML — the canonical must be parsed from HTML, it is not reliably present in
+crawler metadata):**
 - **Title/meta uniqueness** — flag duplicate or near-duplicate titles and meta descriptions.
+- **Canonical uniqueness** — see below.
 - **URL-structure consistency** — flag slug/path outliers (depth, casing, separators, trailing
   slash) against the site's dominant pattern.
 - **Orphan pages** — pages with zero inbound internal links in the crawled link graph.
 - **Inbound-link distribution** — flag shallow/important pages that receive few inbound links.
 
-Output a short cross-page report (duplicates, orphans, structure outliers, thin-inbound pages).
-This is separate from the single-page 0–100.
+### Canonical uniqueness — one own canonical per URL
+
+The rule: **every indexable URL declares exactly one canonical, in `<head>`, absolute, pointing at
+itself.** Two URLs sharing a canonical target means one of them is asking Google not to index it.
+At scale this is the single most destructive technical-SEO bug — a bad template can de-index a
+whole section while every page still "has a canonical."
+
+Findings, in severity order:
+
+| Finding | Severity | Why |
+|---|---|---|
+| 2+ URLs share a canonical target that is **not one of them** | **CRITICAL** | Classic broken template — e.g. every article canonicalizing to `/` or to one hub. All of them drop out. |
+| Canonical points at a **different page** (non-self-referencing) | **CRITICAL** | The URL is asking to be dropped from the index. |
+| **Cross-host** canonical | **CRITICAL** | Hands ranking signals to another domain. Check for a staging/CDN hostname leaking into the template. |
+| **Missing** canonical | HIGH | Google picks one for you, using parameters and duplicates you don't control. |
+| **Multiple conflicting** canonical tags on one page | HIGH | Google ignores **all** of them — same effect as missing. |
+| Canonical **outside `<head>`** | HIGH | Ignored entirely. Fix is to move it, not to add another. |
+| **Relative** canonical (`/slug`) | MEDIUM | Resolves today, breaks the moment the page is served on another path/host. Make it absolute. |
+| Near-miss self-reference — `http` vs `https`, `www` vs bare, trailing-slash or case drift | MEDIUM | Resolves to the same doc but splits signals and contradicts the sitemap. |
+| Canonical target **never seen in the crawl** | MEDIUM | Verify it returns 200 and is itself indexable — a canonical to a 404 or a `noindex` page is wasted. |
+| Param URLs (`?variant=`, `?sort=`) consolidating to a clean URL | INFO | Normal, intended use. Confirm it's deliberate, don't flag it as a bug. |
+
+**Do not report "missing canonical" without HTML to prove it.** If the fetcher returned no raw HTML
+for a URL, the canonical is *unknown*, not absent — the script tracks these separately and the
+report says SKIPPED rather than inventing a site-wide critical.
+
+Output a short cross-page report (duplicates, canonical findings, orphans, structure outliers,
+thin-inbound pages). This is separate from the single-page 0–100.
 
 ---
 

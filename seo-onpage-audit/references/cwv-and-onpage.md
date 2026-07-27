@@ -32,11 +32,34 @@ thresholds against Google's current `web.dev/vitals` before treating as final.
 | URL slug | lowercase, hyphen-separated, concise, human-readable (words not IDs — `/red-unicycle/` not `/red-2192734i.html`); **no repeated keywords** in the path; consistent structure across the site (site-level pass); no redirect chains (max 1 hop) |
 
 ## Indexability
-- Canonical: self-referencing, absolute (full `https://…` matching the live URL incl. trailing
-  slash). Serve it in the **raw server-rendered HTML**, not JS-injected — Google honors raw-HTML
-  robots/canonical even if JS later changes them.
-- `meta robots`: confirm no accidental `noindex`/`nofollow` on pages meant to rank.
-- Page should be present in the site's XML sitemap.
+
+### Canonical
+The rule is **one own canonical per URL**: exactly one `rel="canonical"`, inside `<head>`, absolute,
+self-referencing, character-for-character equal to the live URL (scheme, host incl. `www` or not,
+path case, trailing slash).
+
+- Serve it in the **raw server-rendered HTML**, not JS-injected — Google honors the raw-HTML
+  robots/canonical even if JS later rewrites them.
+- **Count the tags.** Two conflicting `rel="canonical"` elements make Google ignore **both** — the
+  page ends up with no canonical at all. A canonical placed after `</head>` is ignored the same way.
+- **Uniqueness is a site-level property.** A single URL can only prove its canonical is
+  self-referencing; it cannot prove no *other* URL claims the same target. Two URLs sharing a
+  canonical means one is asking to be de-indexed. Verify with the site-level pass — never mark
+  canonical fully PASS from a one-URL fetch.
+- Common template failures worth checking explicitly: every page canonicalizing to `/` or to one hub
+  page; a staging/CDN hostname leaking into a cross-host canonical; paginated pages canonicalizing
+  to page 1 (each paginated URL should self-reference); canonical to a URL that 404s or is
+  `noindex`.
+- Legitimate non-self-referencing canonicals exist — parameter/variant URLs (`?variant=`, `?sort=`)
+  collapsing to the clean URL. Confirm intent; don't auto-flag these as bugs.
+- **Never report "missing canonical" without the served HTML in hand.** No HTML means *unknown*, not
+  absent.
+
+### Other
+- `meta robots`: confirm no accidental `noindex`/`nofollow` on pages meant to rank. A `noindex` page
+  that other URLs canonicalize to poisons every one of them.
+- Page should be present in the site's XML sitemap, and the sitemap URL should match the canonical
+  exactly (a sitemap listing the non-canonical variant is a contradictory signal).
 
 ## Links
 - **Internal:** even spacing — no two links (internal or external) within ~200–300 words of each
