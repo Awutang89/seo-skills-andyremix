@@ -85,7 +85,7 @@ invoke any skill directly by name (e.g. "use keyword-research for …").
 | Skill | What it does on its own |
 |-------|--------------------------|
 | **content-distribution** | Off-site amplification + AI-visibility plan (Reddit, YouTube, LinkedIn, email, entity platforms) to earn links and AI citations. |
-| **content-atomizer** | Repurposes one piece of content into platform-optimized assets for LinkedIn, X, Instagram, TikTok, YouTube. |
+| **content-atomizer** | Two modes. **Split:** breaks a very long article into linked child articles with distinct keywords and entity cores, via a tunable ruleset and a SERP/entity/Q&A decision cascade. **Atomize:** repurposes content into platform-native assets — including long-form X posts and LinkedIn Articles/Newsletters/series, not just short posts — plus broadcast email and infographic briefs. |
 | **shopify-collection-embed** | Embeds a shoppable related-products grid inside blog articles via Shopify's public Collections AJAX API. |
 
 ### Conversion & lifecycle

@@ -1,25 +1,170 @@
 ---
 name: content-atomizer
-description: "Transform one piece of content into platform-optimized assets across LinkedIn, Twitter/X, Instagram, TikTok, and YouTube. Use when someone has existing content (blog post, newsletter, podcast, video) and wants to maximize distribution. Covers format specs, hook formulas, algorithm signals, and creator-tested patterns for each platform. Triggers on: repurpose this, turn this into social posts, atomize this content, create social content from, LinkedIn post from this, thread from this. Outputs platform-specific content ready to publish."
+description: "Split one long article into multiple linked articles with distinct keywords and entity cores, and/or transform content into platform-optimized assets across LinkedIn, Twitter/X, Instagram, TikTok, and YouTube. Two modes. Mode A (split) takes a very long article, extracts its entities, tests whether its topics are one concept or several, and proposes a split map of child articles with primary/secondary keywords, angles, and an interlink plan. Mode B (atomize) turns content into platform-native social posts, long-form X and LinkedIn posts, broadcast email, and infographic briefs. Triggers on: repurpose this, atomize this content, turn this into social posts, thread from this, LinkedIn post from this, split this article, break this into smaller articles, this article is too long, turn this into a content cluster, what entities does this rank for, entity extraction. Outputs a split map plus article briefs, or platform-specific content ready to publish."
 ---
 
 # Content Atomizer Skill
 
 One piece of content should become ten. The best creators don't create more—they distribute better.
 
-This skill transforms any source content into platform-optimized assets. Not generic repurposing. Platform-native content that performs.
+This skill works in two directions. **On-site**, it splits one very long article into the right number
+of smaller articles, each with its own keyword target and entity core. **Off-site**, it transforms
+content into platform-native assets that perform.
 
 **The math:** A single blog post can become 1 LinkedIn carousel + 2 LinkedIn text posts + 1 Twitter thread + 3 single tweets + 2 Instagram carousels + 1 Reel script + 2 TikTok scripts + 1 YouTube Short script = 13 pieces of content from one source.
 
 ---
 
+## Pick your mode
+
+| | **Mode A — Split** | **Mode B — Atomize** |
+|---|---|---|
+| **Input** | One very long article (5,000+ words) | Any finished content |
+| **Output** | N linked child articles: keywords, angles, entity cores, interlink map | Platform-native posts, scripts, email, image briefs |
+| **Direction** | On-site SEO | Off-site distribution |
+| **Produces** | Article briefs → your content skill writes them | Publishable copy |
+| **Jump to** | [Mode A](#mode-a--article-splitting) | [Mode B](#mode-b--platform-atomization) |
+
+They chain: split first, then atomize each child. Either runs alone.
+
+## Before you start: load the brand context
+
+Read `./brand/` per `_system/brand-memory.md`.
+
+**Reads:** `voice-profile.md` (required for Mode B), `positioning.md` (optional)
+
+Every platform template in Mode B adapts *format*, not voice. The energy shifts between platforms —
+LinkedIn is more formal than TikTok — but the underlying voice, vocabulary rules, and forbidden
+phrasings come from the voice profile and stay constant across every asset. Without it, output
+defaults to generic-marketer and each platform drifts in a different direction.
+
+If no voice profile exists, say so and offer to run `brand-voice` first. Don't silently invent a
+voice — inconsistent voice across a distribution push is more damaging than delaying it.
+
+Mode A doesn't need the voice profile (it produces briefs, not prose), but it should pass the profile
+path through to each child brief so the writing step inherits it.
+
+**Routing:** if the source is under ~5,000 words, Mode A will almost certainly tell you not to split
+it — go straight to Mode B. If the source is 20,000+ words, run Mode A first; atomizing a 70-page
+document as a single unit produces mush.
+
+---
+
 ## The Core Job
 
-Transform source content into **platform-native assets** that:
+**Mode A** — decide whether a long article is one concept or several, and if several, produce a split
+map that separates them cleanly without cannibalisation.
+
+**Mode B** — transform source content into **platform-native assets** that:
 - Match each platform's algorithm signals
 - Use format-specific best practices
 - Include hooks proven to stop the scroll
 - Feel native, not repurposed
+
+---
+
+# MODE A — Article Splitting
+
+Full method: `references/article-splitting.md`. Entity procedure:
+`references/entity-extraction.md`. Read both before proposing a split.
+
+## The governing bias: consolidate
+
+A false split costs you two thin pages that cannibalise each other. A missed split costs you one
+article that runs long. **The first error is much more expensive.** When evidence is ambiguous, keep
+it together — unless length forces the issue.
+
+## Length tiers (the bias is scale-dependent)
+
+| Tier | Source length | Default posture |
+|---|---|---|
+| **T1** | < 2,500 words | Don't split |
+| **T2** | 2,500–5,000 | Consolidate hard |
+| **T3** | 5,000–10,000 | Consolidate; partial carve often right |
+| **T4** | 10,000–20,000 | Split expected — question is shape |
+| **T5** | 20,000+ (≈66+ pages) | Split mandatory — related concepts become a chaptered series |
+
+At T4/T5 the consolidate bias stops deciding *whether* to split and starts deciding **which shape**.
+Related concepts that must separate for length become a chaptered series under one hub, which is how
+you split without cannibalising: the hub owns the head term, the parts own distinct longtails.
+
+## The ruleset is presented, not applied silently
+
+**Step 0 is mandatory: show the user the thresholds and the detected length tier, and invite
+overrides.** These defaults come from general SEO practice, not from the user's niche or content —
+they are debatable by design and tunable over time. Full table in `references/article-splitting.md`.
+
+## The decision cascade
+
+For each candidate pair, use the strongest evidence *available*:
+
+| Tier | Test | Works when | Blind spot |
+|---|---|---|---|
+| **1** | SERP overlap — shared URLs in top 10 | Both keywords have real volume | **Fails silently on novel content.** No SERP to measure. |
+| **2** | Entity overlap — shared central entities | Always (reads your text) | Needs careful central/incidental classification |
+| **3** | Structured Q&A with the user | Always | Costs user attention — use only on genuinely ambiguous pairs |
+
+**Tier 1 fails on original material.** Proprietary research, in-house test data, and genuinely new
+concepts have no SERP and no presence in training data. Absence of search data is not evidence that
+concepts are separate — it's absence of signal. For novel content, Tier 2 is primary and Tier 3
+decides.
+
+**Tier 2 blocks.** When Tier 1 says separate and Tier 2 says ≥60% shared entities, the split is
+blocked. Distinct keywords with a shared entity core means the same article wearing two hats.
+
+**Tier 3 asks in domain terms, never SEO terms** — co-consumption, dependency, audience,
+satisfaction, decision-count. The user knows the subject; they shouldn't need SEO knowledge to
+answer. Present your read and confidence first so they're correcting, not originating. Log every
+answer so no pair is ever asked twice.
+
+## The eight steps
+
+1. **Viability gate** — most long articles shouldn't split. "Don't split this, here's why" is a valid output.
+2. **Section inventory** — every H2/H3 → words, query answered, independent demand, existing owner
+3. **2.5 Entity extraction** — inventory, section→entity map, ranking evidence, gaps. **Before grouping**, because entity distribution drives it.
+4. **Candidate children** — each needs a distinct primary, an angle, real material, and its own entity core
+5. **Run the cascade** — every pair, including each candidate against the retained source
+6. **Choose the shape** — present options with trade-offs and a recommendation
+7. **Interlink map** — hub down to spokes, spokes up and across, no orphans
+8. **Validate + hand off** — approved map → each child through your content skill's full write flow
+
+## The five shapes
+
+| Shape | What happens | Use when | Redirects |
+|---|---|---|---|
+| **A — Hub & spoke** | Source becomes trimmed pillar; spokes become independent articles | Source ranks; carved topics have separate intent | None |
+| **B — Full replacement** | Source retires, 301 to strongest child | Source is a grab-bag with no coherent centre | Required |
+| **C — Partial carve** | 1–2 sections leave; source ~90% intact | Mostly coherent, one section wants its own page | None |
+| **D — Chaptered series** | Hub owns head term; Parts 1–N own longtails, sequential nav | **T4/T5 related concepts** — too long for one page, too connected to separate | None |
+| **E — Don't split** | Nothing changes | Viability gate fails, or cascade says consolidate | None |
+
+A 70-page source usually produces a **mix** — some clusters become independent articles, others
+become a chaptered series.
+
+## Entity extraction outputs
+
+Four deliverables, detailed in `references/entity-extraction.md`:
+
+1. **Entity inventory** — type, mentions, central/incidental, resolvable?, ranked for?
+2. **Entity→child assignment** — every child needs an entity *core*, not just a keyword
+3. **Entity overlap matrix** — the Tier-2 block test, per child pair
+4. **Entity gap list** — what competitors treat as central that you don't cover
+
+"What are we ranking for" uses three evidence sources: existing query data, entity+modifier SERP
+checks, and a competitor entity diff. **For novel content two of the three are usually unavailable —
+say so rather than quietly omitting them.**
+
+## Never split in order to
+
+1. Publish more — article count isn't the goal
+2. Hit a word-count target — padding a child to clear the minimum manufactures thin content
+3. Create a child whose primary is a longtail variant of the source primary — that *is* cannibalisation
+4. Carve out context — sections that set up the main argument die when separated
+5. Break a ranking page — position ≤5 means the current structure works
+
+---
+
+# MODE B — Platform Atomization
 
 ---
 
@@ -71,9 +216,93 @@ From any source, identify:
 | Format | Specs | Notes |
 |--------|-------|-------|
 | Carousel | 5-10 slides, 1080x1350px | Highest dwell time, save-worthy |
-| Text Post | 1,200-1,500 chars, 3-line hook | Depth over frequency |
+| Text Post | 1,200-1,500 chars recommended (**3,000 cap**) | Depth over frequency |
+| **Long text post** | 2,000-3,000 chars | Full argument in-feed; still fights the "see more" fold |
+| **Article** | No practical length limit, headers + images | Google-indexable, permanent URL, low feed reach |
+| **Newsletter** | Article + subscriber notification | **Highest-leverage format on the platform** — pushes to subscribers |
+| **Post series** | 3-7 posts over 1-3 weeks | The "thread" equivalent; compounding, builds topic authority |
 | Document | PDF, 10-15 pages max | Good for frameworks |
 | Video | 30-90 seconds, captions required | Lower reach than text/carousels |
+
+> **Verify limits before relying on them.** Character caps, newsletter eligibility, and article
+> features change. The selection logic below is stable; the numbers aren't.
+
+#### It doesn't have to be a short post: choosing the LinkedIn format
+
+| Source content looks like | Use | Why |
+|---|---|---|
+| One insight with a story | **Text post** | Native, highest reach, lowest effort |
+| A full argument that needs room | **Long text post** | Stays in-feed (no click-out penalty) while going deep |
+| A visual framework or process | **Carousel** | Forces dwell time; each swipe is a signal |
+| Reference content you want indexed and linkable | **Article** | Permanent URL, Google-indexable, headers |
+| Reference content **and** you want distribution | **Newsletter** | Everything Articles give you, plus a notification to every subscriber |
+| A long article with 4+ separable points | **Post series** | Each post is a fresh entry point; the sequence compounds authority |
+| Anything with an external link | **Post + link in first comment** | External URLs in the post body suppress reach |
+
+**The Newsletter is the most under-used format here.** An Article and a Newsletter edition are nearly
+the same artifact, but the Newsletter notifies every subscriber on publish. If you're publishing
+long-form to LinkedIn at all, publishing it as a Newsletter instead of an Article costs nothing extra
+and adds a push channel. Set the newsletter up once; every long-form piece afterward uses it.
+
+**Post series is the LinkedIn analogue of a thread** — but distributed across days, not minutes.
+Where an X thread is consumed in one sitting, a LinkedIn series gets a separate algorithmic roll of
+the dice per post, and each one can reference the last. This is the right destination for a long
+source article that has 4+ genuinely separable points.
+
+#### LinkedIn Post Series Template
+
+```
+POST 1 — The thesis (day 1)
+  [Full hook + the core claim]
+  [Preview: "Over the next [N] posts I'll break down each of these."]
+  [Do NOT list all N points — that gives away the series]
+
+POSTS 2 to N-1 — One point each (every 2-3 days)
+  [Callback: "This is part [X] of [N] on [topic]."]
+  [ONE point, treated fully — this must stand alone for
+   people who never saw post 1]
+  [Forward hook: "Next: [the specific next point]"]
+
+POST N — The synthesis (final)
+  [Recap all N as a scannable list]
+  [The meta-insight that only appears once you see all of them]
+  [CTA — this is where the offer/link goes, not in post 1]
+```
+
+**Series rules:** every post must satisfy a cold reader who never saw the others; the callback line is
+one line, not a recap paragraph; and the CTA waits for the final post.
+
+#### LinkedIn Newsletter / Article Template
+
+```
+TITLE: [Specific and searchable — this one gets indexed by Google,
+        so it follows SEO title logic, not feed-hook logic]
+
+SUBTITLE / opening line:
+[The promise, in one sentence]
+
+[OPENING — 2-3 short paragraphs. Unlike a feed post, you're not
+fighting for a scroll-stop; the reader already opted in. Lead with
+the conclusion instead of a hook.]
+
+## [Section header]
+[Full treatment — this is the format where depth is rewarded]
+
+## [Section header]
+[Images where they carry information]
+
+## [Section header]
+
+## What to do with this
+[Concrete next actions]
+
+---
+[Subscribe CTA — for Newsletters, this compounds every edition]
+```
+
+**Accompany every Newsletter/Article with a feed post** pointing to it — the article itself gets
+little feed reach on its own. Post the single best insight natively as a text post, with the article
+link in the first comment.
 
 #### LinkedIn Carousel Template
 
@@ -195,8 +424,97 @@ Here's what I learned:
 |--------|-------|-------------|
 | Single Tweet | <100 characters optimal | Highest engagement rate |
 | Thread | 8-15 tweets | Best for depth + followers |
+| **Long post** | Essay-length, single unit (paid tiers) | Best dwell time + profile clicks; lower raw reach |
+| **Article** | Rich text, headers, embedded images (higher paid tier) | Canonical on-platform reference; lowest reach, longest life |
 | Quote Tweet | Add value to original | 2x engagement vs retweet |
 | Image Tweet | 1200x675px | 35% more engagement |
+
+> **Verify limits before relying on them.** Character caps, which formats sit behind which paid tier,
+> and what the composer exposes all change frequently on this platform. The *selection logic* below
+> is stable; the specific numbers are not. Check current limits at time of use.
+
+#### It doesn't have to be a tweet: choosing the X format
+
+The most common mistake is defaulting to a thread. Threads are one option of four, and they're the
+wrong one for a lot of source material.
+
+| Source content looks like | Use | Why |
+|---|---|---|
+| Sequential steps, a listicle, N discrete tips | **Thread** | Each unit stands alone; every tweet is a re-entry point; maximises impressions |
+| An argument where each step depends on the last | **Long post** | Chopping dependent reasoning into 280-char units destroys the chain |
+| Technical explanation with setup, math, caveats | **Long post** | Caveats stranded in tweet 9 get read as standalone claims and quote-tweeted out of context |
+| Reference material you want to be *the* link | **Article** | Formatting, headers, longest shelf life |
+| One counterintuitive claim | **Single tweet** | Compression is the payload; don't dilute it |
+| Reacting to someone else's take | **Quote tweet** | 2x engagement vs. retweet, and it borrows their audience |
+
+**The rule for technical content:** if the argument has dependencies — "this only holds when X", "the
+number changes if Y" — a thread will get you misquoted. Every tweet is independently
+screenshot-able, and the qualifying tweet never travels with the claim. Use a long post.
+
+**The hook doesn't disappear in a long post.** Only the first ~280 characters render before the
+"Show more" fold. Everything you know about hook writing still applies to that opening block — it's
+just that the payoff lives below the fold instead of in tweet 2.
+
+#### X Long Post Template
+
+```
+[HOOK BLOCK — first ~280 chars, this is all that shows before "Show more"]
+[Must work as a standalone tweet. Bold claim or specific promise.]
+[Do NOT open with "A thread:" or "Let me explain" — you have one unit, use it]
+
+[FOLD]
+
+[CONTEXT — why this matters, 2-4 sentences]
+
+[BODY — the argument, in full, with dependencies intact]
+
+  Sub-point framing works here. Line breaks are your only
+  formatting, so use them deliberately. Dense blocks don't
+  get read.
+
+[THE QUALIFIER — the "this only holds when..." that would have been
+stranded in tweet 9. It belongs next to the claim it qualifies.]
+
+[TAKEAWAY — the one line worth screenshotting]
+
+[CTA — one, at the end]
+```
+
+#### X Article Template
+
+```
+HEADLINE: [Specific, no clickbait — this is reference content]
+
+[Opening: the conclusion first. Readers who came from a post
+already know the hook; don't re-sell them.]
+
+## [Section header]
+[Full treatment. Headers make it scannable and skimmable —
+the one X format where structure is available. Use it.]
+
+## [Section header]
+[Embedded images where they carry information, not decoration]
+
+## [Section header]
+
+[Closing: what to do with this]
+```
+
+#### The hybrid: hook tweet → long post reply
+
+Post the hook as a standalone tweet, then reply to yourself with the long post. You get the reach
+profile of a short tweet and the depth of an essay, and the long post inherits the hook tweet's
+engagement.
+
+```
+Tweet 1 (standalone, <100 chars):
+  [The single most surprising claim from the source]
+
+Reply (long post):
+  [The full argument, dependencies intact]
+```
+
+Use when the source has one genuinely arresting claim and a long tail of necessary nuance.
 
 #### Twitter Thread Template
 
@@ -650,6 +968,93 @@ End abruptly (drives rewatch for missed content)
 
 ---
 
+### Email — the broadcast
+
+Atomization produces a **broadcast**: a short email whose only job is to earn the click through to the
+article. That is a different artifact from a newsletter edition, which is standalone value the reader
+consumes in the inbox and may never click out of.
+
+| | Broadcast (this skill) | Newsletter edition (`newsletter` skill) |
+|---|---|---|
+| **Job** | Sell the click | Be the value |
+| **Length** | 120-250 words | 800-3,000 words |
+| **Success** | Click-through rate | Read-through, replies, forwards |
+| **Timing** | Within ~24h of publish — early engagement is a freshness signal | On its own schedule |
+
+**If the goal is a full edition, hand off to the `newsletter` skill.** Don't rewrite it here.
+
+#### Broadcast Template
+
+```
+SUBJECT: [The specific finding, not the article title]
+         [4-7 words. No "New post:" prefix — it reads as a bulletin
+          and gets ignored.]
+
+PREVIEW TEXT: [The second-most interesting thing. Do not repeat
+               the subject — you get two lines of attention, use both.]
+
+---
+
+[ONE-LINE SETUP — why you looked into this]
+
+Three things worth knowing:
+
+1. [Finding — the number or the surprise, stated plainly]
+2. [Finding]
+3. [Finding]
+
+[THE ONE THAT MATTERS — 2-3 sentences on the most useful of the three,
+with the caveat. This is the paragraph that earns the click.]
+
+→ [Full breakdown: link]
+
+[Sign-off]
+```
+
+**Rules:** lead with the finding, not the fact that you published. Give away the three best things —
+withholding them to force a click suppresses clicks. Link once, plus the sign-off.
+
+### Infographics — the brief, not the render
+
+This skill **specifies** the visual and hands off. It does not generate images — that's
+`seo-image-gen` (article-embedded, OG cards, data infographics) or `creative` (social graphics at
+campaign scale).
+
+Producing a brief instead of a vague "make an infographic" request is what makes the handoff work.
+
+#### Infographic Brief Template
+
+```
+PURPOSE:      [Which citable section this pairs with — a data visual
+               that isn't anchored to a specific claim is decoration]
+
+DATA:         [The exact values, with units and the source for each.
+               Never hand off data the generator has to invent.]
+
+STRUCTURE:    [Comparison table / process flow / ranked bars /
+               before-after / decision tree / annotated diagram]
+
+HIERARCHY:    1. [The number that has to land first]
+              2. [Supporting context]
+              3. [Source attribution — always visible]
+
+ASPECT:       [4:5 for feed and article embed · 16:9 for OG ·
+               9:16 for stories/shorts]
+
+TEXT IN IMAGE: [Every word that must render, verbatim. Generators
+               get typography wrong when it's left implied.]
+
+CONSTRAINTS:  [Legibility floor at thumbnail size; brand palette;
+               anything that must NOT appear]
+```
+
+**Which visuals actually earn the effort:** a data infographic paired with a citable section (it
+supports the claim *and* satisfies the multi-modal signal), a process flow when the source explains a
+sequence, and a comparison table when the source compares 3+ options. Quote cards and generic
+"tips" graphics rarely justify production time.
+
+---
+
 ## The Atomization Workflow
 
 ### Step 1: Extract
@@ -688,13 +1093,16 @@ CONTRARIAN TAKES:
 
 | Content Element | Best Platforms | Best Formats |
 |-----------------|----------------|--------------|
-| Core insight | All | Single posts, hooks |
-| Supporting points (together) | LinkedIn, Twitter | Carousel, thread |
+| Core insight | All | Single posts, hooks, broadcast subject line |
+| Supporting points (together) | LinkedIn, Twitter | Carousel, thread, post series |
 | Individual points | All | Single posts |
+| **Dependent argument** (each step needs the last) | Twitter/X, LinkedIn | **Long post, Article — never a thread** |
+| **Reference-grade depth** | LinkedIn, Twitter/X | **Newsletter, Article** |
 | Stories | Instagram, TikTok | Reels, Stories |
-| Data points | LinkedIn, Twitter | Image posts, carousels |
+| Data points | LinkedIn, Twitter | Image posts, carousels, **infographic brief** |
 | Quotable lines | Twitter, Instagram | Quote graphics |
 | Contrarian takes | Twitter, TikTok | Single tweets, video hooks |
+| **The 3 best findings** | Email | **Broadcast** (within 24h of publish) |
 
 ### Step 3: Transform
 
@@ -811,38 +1219,86 @@ The same insight needs different energy per platform:
 
 | Platform | Optimal Length | Best Format | Hook Window | Top Signal |
 |----------|---------------|-------------|-------------|------------|
-| LinkedIn | 1,200-1,500 chars | Carousel | First 3 lines | Dwell time + topic authority |
+| LinkedIn | 1,200-1,500 chars (3,000 cap) | Carousel | First 3 lines | Dwell time + topic authority |
+| LinkedIn (long-form) | No practical limit | **Newsletter** > Article | Title + first 2 lines | Subscriber push + Google indexing |
 | Twitter/X | <100 chars (single) | Thread (8-15) | First tweet | Replies + early engagement |
+| Twitter/X (long-form) | Essay-length | **Long post** for dependent arguments | First ~280 chars (pre-fold) | Dwell time + profile clicks |
 | Instagram | 6-10 slides | Carousel | First slide | DM shares ("sends per reach") |
 | TikTok | 30-60 seconds (if retention high) | Short video | First 3 seconds | Completion + niche alignment |
 | YouTube (Shorts) | 10-35 seconds | Vertical video | First 2 seconds | Completion rate |
 | YouTube (Long) | 8-12 minutes | Horizontal | First 30 seconds | Satisfaction + session time |
+| Email | 120-250 words | Broadcast | Subject + preview text | Click-through rate |
+
+Platform mechanics change frequently. Treat the dated algorithm notes and the specific caps above as
+**directional** — verify current limits before relying on them.
 
 ---
 
 ## The Test
 
-Good atomization means:
+**Mode B (atomization) is good when:**
 
 1. **Each piece stands alone** — Makes sense without the source
 2. **Each piece feels native** — Doesn't feel "repurposed"
 3. **Hooks match the platform** — Right energy, right format
-4. **Value is front-loaded** — Best stuff first
-5. **CTAs are appropriate** — Platform-native actions
-6. **Quality over quantity** — 5 great pieces > 15 mediocre ones
+4. **Format matches the content** — A dependent argument didn't get chopped into a thread
+5. **Value is front-loaded** — Best stuff first
+6. **CTAs are appropriate** — Platform-native actions
+7. **Quality over quantity** — 5 great pieces > 15 mediocre ones
+
+**Mode A (splitting) is good when:**
+
+1. **It was willing to say no** — a splitter that always finds a split is manufacturing thin content
+2. **Every child has an entity core**, not just a keyword
+3. **No child's primary is a longtail variant of the source's**
+4. **The retained hub still reads as a complete argument** — not leftovers
+5. **The evidence tier is stated** — including which tiers were unavailable and why
+6. **Every ambiguous pair was asked about, not guessed at**
 
 ---
 
 ## How This Connects to Other Skills
 
-**Input from:**
-- **seo-content** → Blog posts to atomize
-- **newsletter** → Newsletter editions to atomize
-- **direct-response-copy** → Landing page insights to distribute
-- **brand-voice** → Ensures consistent voice across platforms
+**Mode A — splitting:**
+
+| Skill | Relationship |
+|---|---|
+| `keyword-database-article-map` | Owns the SERP-Overlap Test, One-Home Rule, and angle differentiation. Mode A **drives** that logic — it doesn't re-implement it. |
+| `seo-content` | Receives each approved child brief and writes it through the full flow, gates included |
+| `information-gain` | Consumes the entity gap list — gaps become research targets |
+| `internal-linking` | Executes the interlink map Mode A produces |
+
+**Mode B — atomization:**
+
+| Skill | Relationship |
+|---|---|
+| `seo-content` | **Input** — published articles to atomize |
+| `brand-voice` | **Input** — produces `./brand/voice-profile.md`, loaded at start (see *Before you start*). Run it first if absent. |
+| `direct-response-copy` | **Input** — landing page insights to distribute |
+| `newsletter` | **Output** — hand off when the goal is a full edition, not a broadcast |
+| `seo-image-gen` | **Output** — receives infographic briefs and renders them |
+| `creative` | **Output** — receives social graphic specs at campaign scale |
+| `content-distribution` | **Wraps this** — decides which channels and when; this skill makes the assets that plan calls for |
 
 **The flow:**
-1. Create source content (blog, newsletter, video)
-2. **content-atomizer transforms into platform pieces**
-3. Each piece drives back to source or offer
-4. Repeat with next piece of source content
+
+```
+Very long article
+   │
+   ├─ MODE A ─→ split map ─→ child briefs ─→ seo-content ─→ published articles
+   │                                                             │
+   └─────────────────────────────────────────────────────────────┘
+                                                                 │
+                                                            MODE B
+                                                                 │
+        ┌──────────────┬──────────────┬─────────────┬────────────┴───────┐
+     social         long-form      broadcast     infographic          series
+      posts        X / LinkedIn      email          brief            (LinkedIn)
+                                                       │
+                                                 seo-image-gen
+```
+
+1. Long source → **Mode A** decides whether it's one concept or several
+2. Approved children → your content skill writes them
+3. Each published article → **Mode B** produces platform assets
+4. `content-distribution` sequences the release across channels

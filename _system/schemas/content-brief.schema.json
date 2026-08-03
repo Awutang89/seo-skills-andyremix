@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/content-brief.schema.json",
+  "$id": "https://marketing-skills.local/schemas/content-brief.schema.json",
   "title": "Content Brief",
   "description": "Structured brief for an individual content piece, produced by /keyword-research and consumed by /seo-content. Contains target keyword, SERP analysis data, recommended structure, and writing guidelines. Enables automated handoff from keyword planning to content production.",
   "type": "object",

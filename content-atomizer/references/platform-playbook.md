@@ -47,6 +47,81 @@ LinkedIn uses a **three-step process**: quality filtering (spam/low/high classif
 - High contrast (dark text on light, or vice versa)
 - Consistent design system across slides
 
+### Long-Form on LinkedIn: Articles, Newsletters, and Series
+
+Most operators treat LinkedIn as a short-post platform and leave three formats unused. Each solves a
+problem the feed post can't.
+
+#### The Newsletter is the highest-leverage format on the platform
+
+An Article and a Newsletter edition are nearly the same artifact — long-form, headers, images,
+permanent URL, Google-indexable. The difference is distribution: **publishing a Newsletter notifies
+every subscriber.** An Article publishes into silence and relies entirely on you promoting it.
+
+| | Article | Newsletter |
+|---|---|---|
+| Permanent URL | Yes | Yes |
+| Google-indexable | Yes | Yes |
+| Headers, images, formatting | Yes | Yes |
+| Subscribers accumulate | No | **Yes** |
+| Notification on publish | No | **Yes** |
+| Setup cost | None | One-time |
+
+The practical implication: **if you are publishing long-form to LinkedIn at all, there is almost no
+case for choosing an Article over a Newsletter.** Same work, adds a push channel that compounds with
+every edition. Set it up once.
+
+**Newsletter mechanics that matter:**
+- **Cadence beats volume.** A predictable monthly edition outperforms sporadic weekly attempts —
+  subscribers learn when to expect you.
+- **The title is an SEO title, not a feed hook.** These get indexed. Write for the search query, not
+  the scroll-stop.
+- **Lead with the conclusion.** The reader already opted in by clicking; re-hooking them wastes the
+  first paragraph.
+- **Always pair with a native feed post.** Long-form gets little feed reach on its own. Post the
+  single best insight natively, link in the first comment.
+
+#### Long text posts (2,000–3,000 chars)
+
+The cap is 3,000 characters — roughly double the 1,200–1,500 that gets recommended as optimal. That
+recommendation is about attention, not limits, and it's wrong for some content.
+
+**Use the full length when:** the argument has dependencies, the caveat matters as much as the claim,
+or the value is in the reasoning rather than the conclusion. **Stay short when:** the insight is the
+compression itself.
+
+The trade-off is real: longer posts fight the "see more" fold harder, but they generate dwell time,
+which is still LinkedIn's dominant ranking signal. A long post that gets read fully beats a short one
+that gets scrolled past.
+
+#### The post series — LinkedIn's answer to the thread
+
+An X thread is consumed in one sitting. A LinkedIn series is distributed across days, and that
+difference is an advantage: **each post gets its own independent algorithmic roll.** One underperforms,
+the next still gets a fair shot. A thread that dies in the first hour dies entirely.
+
+| | X thread | LinkedIn series |
+|---|---|---|
+| Consumed | One sitting | Over 1–3 weeks |
+| Algorithmic chances | One | One per post |
+| Each unit standalone | Loosely | **Strictly required** |
+| Builds topic authority | Weakly | **Strongly** — repetition on one theme |
+
+**Series construction:**
+
+1. **Post 1 states the thesis and previews the shape, but never lists all N points.** Listing them
+   gives away the series and kills the reason to follow.
+2. **Every middle post must satisfy a cold reader.** Most people will see exactly one post in your
+   series. If it only makes sense to someone who read the previous four, it fails for the majority.
+3. **The callback is one line, not a recap paragraph.** "Part 3 of 6 on [topic]" — then straight into
+   the content.
+4. **Forward hook names the next specific point**, not "more soon."
+5. **The CTA waits for the final post.** Asking for the click in post 1 caps the series at one
+   conversion opportunity.
+
+**Sizing:** 3–7 posts. Below 3 it's not a series. Above 7, attrition between posts means the later
+ones reach almost nobody who saw the earlier ones — split it into two series or make it a Newsletter.
+
 ### Top LinkedIn Creators to Study
 
 **Justin Welsh** (@justinwelsh)
@@ -181,6 +256,79 @@ If this was useful:
 
 [Link if relevant]
 ```
+
+### Long-Form on X: When the Thread Is the Wrong Choice
+
+Threads are the default, and the default is frequently wrong. X supports essay-length single posts
+and formatted long-form Articles on its paid tiers, and for a large class of source material those
+beat a thread outright.
+
+> Tier gating, character caps, and composer features change often on this platform. The selection
+> logic below is stable; verify the specific limits before relying on them.
+
+#### The structural argument against threads
+
+A thread's defining property is that **every tweet is independently screenshot-able, quotable, and
+shareable.** For listicle content that's the whole advantage — each unit is a fresh entry point.
+
+For a dependent argument it's a liability. Consider material shaped like:
+
+> "The rated figure is X. But that figure assumes conditions A and B. Under realistic conditions it's
+> closer to Y. Which means the common recommendation is wrong by roughly Z."
+
+As a thread, tweet 2 ("the rated figure is X") travels without tweet 4 ("under realistic conditions
+it's Y"). The qualifier never accompanies the claim. You get quoted saying the thing you were arguing
+against.
+
+**The rule: if removing any single unit from your thread would make an earlier unit misleading, it
+isn't a thread. It's a long post.**
+
+| Source shape | Format | Reason |
+|---|---|---|
+| N discrete tips, steps, examples | **Thread** | Units are independent; maximise entry points |
+| Argument with dependencies and caveats | **Long post** | Qualifier must travel with the claim |
+| Technical explanation: setup → math → limits | **Long post** | Stranded caveats get misquoted |
+| Narrative that loses force when chopped | **Long post** | Pacing is the payload |
+| Reference material you want linked to | **Article** | Headers, formatting, shelf life |
+| One counterintuitive claim | **Single post** | Compression *is* the value |
+
+#### Long post mechanics
+
+**The fold is the whole game.** Only the first ~280 characters render before "Show more". That
+opening block is doing exactly the job a hook tweet does — it just isn't labelled as one. Every hook
+principle still applies to it.
+
+What changes below the fold:
+
+- **No per-unit hook pressure.** You don't need to re-earn attention every 280 characters, which is
+  what makes dependent reasoning possible.
+- **Line breaks are your only formatting.** No headers, no bold. Dense blocks don't get read — break
+  aggressively, more than feels natural.
+- **Reach is lower, dwell time is higher.** Long posts trade impressions for engaged reading and
+  profile clicks. If the goal is reach, thread. If the goal is credibility with the people who
+  already follow you, long post.
+- **Never open with "A thread:" or "Let me explain."** You have one unit. Spending the pre-fold
+  characters announcing structure wastes the only real estate that's guaranteed to be seen.
+
+#### The hybrid: hook post → long post reply
+
+Post the hook as a standalone short post, then reply to yourself with the full long post.
+
+- The short post gets the reach profile of a short post
+- The long post inherits the parent's engagement
+- Readers who want depth click through; readers who don't still saw the claim
+
+Use when the source has one arresting claim plus a long tail of necessary nuance — which describes
+most technical writing.
+
+#### Articles
+
+Full rich text: headers, embedded images, real formatting. The one X format that supports document
+structure.
+
+Use for reference content you want to be the canonical on-platform link. Lowest reach of any format
+here, longest shelf life. Open with the conclusion — anyone arriving from a post already got the
+hook, so re-selling them wastes the opening.
 
 ### Top Twitter Creators to Study
 
@@ -715,13 +863,19 @@ CTA: "What do you think?"
 
 ### Content Repurposing Matrix
 
-| Source | → LinkedIn | → Twitter | → Instagram | → TikTok | → YouTube |
-|--------|------------|-----------|-------------|----------|-----------|
-| Blog Post | Carousel, 2x text | Thread, 3x single | Carousel, Reel | 2-3 clips | Short, Long |
-| Newsletter | Text post, carousel | Thread | Carousel | 1-2 clips | Short |
-| Podcast | Quote posts | Thread, clips | Reel clips | 3-5 clips | Full episode |
-| Video | Key points as text | Thread of insights | Reel clips | Repurpose | Source |
-| Data/Research | Carousel | Thread | Carousel | Green screen | Short |
+| Source | → LinkedIn | → Twitter/X | → Instagram | → TikTok | → YouTube | → Email |
+|--------|------------|-----------|-------------|----------|-----------|---------|
+| Blog Post | Carousel, 2x text | Thread, 3x single | Carousel, Reel | 2-3 clips | Short, Long | Broadcast |
+| **Long article (10k+)** | **Series + Newsletter** | **Long post + thread** | Carousel set | 3-5 clips | Long + Shorts | Broadcast |
+| **Technical / dependent argument** | **Long text post** | **Long post — not a thread** | Carousel | 1 clip | Long | Broadcast |
+| Newsletter | Text post, carousel | Thread | Carousel | 1-2 clips | Short | — |
+| Podcast | Quote posts | Thread, clips | Reel clips | 3-5 clips | Full episode | Broadcast |
+| Video | Key points as text | Thread of insights | Reel clips | Repurpose | Source | Broadcast |
+| Data/Research | Carousel + **Newsletter** | Thread | Carousel | Green screen | Short | Broadcast |
+| **Original research (novel)** | **Newsletter** | **Article** | Carousel | 1-2 clips | Long | Broadcast |
+
+**Before atomizing anything over ~10,000 words, run Mode A first.** A 70-page document atomized as a
+single unit produces mush — split it into coherent articles, then atomize each one.
 
 ---
 

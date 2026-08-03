@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/email-sequence-summary.schema.json",
+  "$id": "https://marketing-skills.local/schemas/email-sequence-summary.schema.json",
   "title": "Email Sequence Summary",
   "description": "Structured metadata for an email sequence produced by /email-sequences. Contains sequence type, email count, subject lines, timing, and CTA data. Designed for downstream automation -- feeding sequence data to an ESP (Mailchimp, ConvertKit, HubSpot) for automated deployment.",
   "type": "object",

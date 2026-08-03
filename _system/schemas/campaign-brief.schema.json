@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/campaign-brief.schema.json",
+  "$id": "https://marketing-skills.local/schemas/campaign-brief.schema.json",
   "title": "Campaign Brief",
   "description": "Structured metadata for a marketing campaign. Each campaign directory (./campaigns/{name}/) should have a brief.md and may optionally include a brief.json validated against this schema.",
   "type": "object",

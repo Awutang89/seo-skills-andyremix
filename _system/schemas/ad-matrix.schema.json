@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/ad-matrix.schema.json",
+  "$id": "https://marketing-skills.local/schemas/ad-matrix.schema.json",
   "title": "Ad Testing Matrix",
   "description": "Structured 12-ad testing matrix produced by /positioning-angles and /creative (ad mode). Maps hooks against formats to create a systematic ad testing grid. Designed for downstream automation -- feeding ad variants to Meta Ads, Google Ads, or other ad platforms for campaign creation.",
   "type": "object",

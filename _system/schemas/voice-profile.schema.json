@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/voice-profile.schema.json",
+  "$id": "https://marketing-skills.local/schemas/voice-profile.schema.json",
   "title": "Brand Voice Profile",
   "description": "Structured voice profile for a brand, written by /brand-voice and consumed by all content-producing skills. Validates the structured data that accompanies ./brand/voice-profile.md.",
   "type": "object",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vibemarketing.dev/schemas/keyword-plan.schema.json",
+  "$id": "https://marketing-skills.local/schemas/keyword-plan.schema.json",
   "title": "Keyword Plan",
   "description": "Structured keyword plan produced by /keyword-research. Contains prioritized keyword clusters, individual target keywords with metrics, and a content roadmap. Consumed by /seo-content for article production and by /start-here for content gap analysis.",
   "type": "object",
