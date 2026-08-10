@@ -137,6 +137,32 @@ If the article contains any of these, flag them for removal:
 - **Tacked-on cross-references** — "see our [guide]", "For more on X, see [Article]", etc. Rewrite as woven-in links or remove entirely.
 - **Plain-text article references** — unlinked mentions of article titles (e.g., "see the How to Choose [Product] guide"). Either convert to a proper woven-in link or delete.
 
+### Step 1.5 — Link-target intro check
+
+A link is only worth placing if the destination holds the reader. Once the candidate targets are
+selected, open each target article and spot-check **its intro** against the intro formula
+(`skills/seo-content/references/intro-formula.md`) — hook in the first sentence, query answered,
+payoff as an outcome, authority clause, no links before the first H2.
+
+**What to do with a failure:** flag the target for a refresh — **do not drop the link.** A weak intro
+is a reason to fix that article, not a reason to strand it without inbound links. Hand flagged
+targets to the `seo-content` refresh path (the Link Refresh / rewrite route in Phase 1 of that
+skill).
+
+Report the flags alongside the Phase 5 preview so the user can decide what to queue:
+
+```
+Link-target intro check
+| Target | Intro issue | Action |
+|---|---|---|
+| [Article title] | No hook — opens on a category definition | Queue for refresh |
+| [Article title] | External link in the intro | Queue for refresh |
+| [Article title] | Passes | — |
+```
+
+Spot-check only the targets you're actually linking to in this pass. This is a scan, not an audit of
+the whole site.
+
 ---
 
 ## Phase 2: Map Titles to URLs (Enhanced with Parent-Child Data)
@@ -207,6 +233,8 @@ Priority 3: Links to sibling articles (same parent)
 ### Step 3.1 — Identify candidate locations
 
 Read the article content (excluding the intro, FAQ, and conclusion sections — links should go in the body content only).
+
+**The intro exclusion covers every link, not just internal ones.** No link of any kind — internal or external — belongs before the first H2. The intro's only job is to earn the next scroll, and a link is an invitation to leave. See rule 8 in `skills/seo-content/references/intro-formula.md`. If you find an existing external link in the intro while cataloging, flag it in the Phase 5 preview for removal or relocation into the body.
 
 For each link target, search the article for mentions of:
 - The target article's primary keyword (exact or partial match)
@@ -482,6 +510,8 @@ Before finalizing, verify:
 [ ] No tacked-on links — every linked sentence makes its own point without the link
 [ ] No duplicate link targets — each internal URL appears at most once per article
 [ ] No "Related articles" footer — all links are woven into body content
+[ ] No links before the first H2 — internal or external (see seo-content/references/intro-formula.md)
+[ ] Link-target intros spot-checked against the intro formula — any failing target flagged for refresh, not dropped
 [ ] FAQ questions use H3 headings (### Question?), not bold (**Question?**)
 [ ] HTML file regenerated via your publish step
 [ ] Shopify upload successful via your Shopify push step (Admin API)

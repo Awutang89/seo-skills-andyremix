@@ -639,6 +639,7 @@ If a section in your outline has no secondary keyword assigned to it from the br
 
 As you build the outline, insert these placeholder markers throughout. The outline is generated dynamically from SERP analysis — these markers are added to the generated structure, not to a fixed template.
 
+- **At the intro:** `[INTRO: hook type (educator/consequence/contrarian) + payoff + authority signal + method if comparison/listicle/roundup/review]` — makes the intro reviewable at the outline approval gate, before it's drafted. See `references/intro-formula.md`.
 - **After the intro section:** `> **TL;DR:** [placeholder — write after draft is complete]`
 - **Under each H2:** `[ANSWER-FIRST: 40-60 words — stat + source + direct answer]`
 - **Under each major H2:** `[CITATION CAPSULE: 40-60 word self-contained quotable passage]`
@@ -925,6 +926,15 @@ The conclusion statement doesn't have to be a separate sentence — it can be wo
 - [ ] Query answered directly (no build-up, no preamble)
 - [ ] Conclusion stated (what the reader will know/be able to do)
 - [ ] No AI preamble phrases ("In today's...", "Whether you're a...")
+- [ ] Hook in the FIRST sentence — educator (verified figure), consequence (cost of getting it wrong), or contrarian (the take the SERP won't make)
+- [ ] Opening move matches the brief's search intent — informational leads with the answer, commercial with the decision + criteria, transactional with the qualifying spec
+- [ ] Payoff written as an outcome, not an agenda — no "by the end of this article you'll learn...", no "in this post we'll cover..."
+- [ ] Authority clause present — one clause on how we know (sourcing, scope, or method). Institutional only; never an invented byline
+- [ ] Selection/ranking criteria stated (comparison, listicle, roundup, product-review only — N/A otherwise)
+- [ ] Within the intro word budget for the chosen structure
+- [ ] No links before the first H2 — internal or external
+
+Full formula, hook types, per-structure length caps and a worked before/after: `references/intro-formula.md`.
 
 ### TL;DR Box Rule
 
@@ -1506,8 +1516,9 @@ Run this as the first pass of Phase 7 — a fine-tooth-comb read of the humanize
 - **Banned words and empty connectives** — the core-40 (`references/llm-words-to-avoid.md`) plus *moreover, furthermore, additionally, notably, ultimately, that said*.
 - **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, ≤1 em-dash per paragraph.
 
-**Four audit-only checks (judgments, not bulk rules):**
+**Five audit-only checks (judgments, not bulk rules):**
 - **Opening leads with the point** — flag any background, definition, or "in this post we'll cover" setup that delays the substance past the first sentence. (Cross-checks the First 200 Words Rule.)
+- **Links in the intro** — flag any link, internal or external, placed before the first H2. The intro's only job is the next scroll; a link is an invitation to leave. This is a flag for the reviewer to clear, not a gate failure — the hard rule lives in `references/intro-formula.md` (rule 8).
 - **Audience register** — written for a **[target buyer] making a considered purchase decision**; flag where it over-explains what this reader already knows, or formalizes below the brand's plain register.
 - **Format that fights the piece** — flag a wall of text that should be broken up, or a list/table/header padding points that would read better as plain sentences. Do **not** impose a word count or restructure the draft.
 - **Fact pass** — flag any statistic, name, or quote not traceable to the Phase 1.5 verified list as **unverified**, rather than leaving it in. Do not invent numbers.
@@ -1605,6 +1616,11 @@ Output this table in full before writing the files — every row, every check, e
 | Primary keyword used naturally in first 1-2 sentences | PASS / FAIL |
 | Conclusion stated within first 200 words | PASS / FAIL |
 | Title question answered within first 200 words | PASS / FAIL |
+| Intro hook in the first sentence — educator (figure), consequence (cost of getting it wrong), or contrarian; not setup or definition — see references/intro-formula.md | PASS / FAIL |
+| Intro's opening move matches the brief's search intent (informational → answer / commercial → decision + criteria / transactional → qualifying spec) | PASS / FAIL |
+| Authority clause in the intro — one clause on how we know (sourcing, scope, or method); institutional, no invented byline | PASS / FAIL |
+| Selection or ranking criteria stated in the intro (comparison / listicle / roundup / product-review) | PASS / FAIL / N/A |
+| Intro within the word budget for the chosen structure (see intro-formula.md table) | PASS / FAIL |
 | At least 3 specific numbers or examples | PASS / FAIL |
 | At least 1 unique insight or angle not in competitors | PASS / FAIL |
 | Uniqueness vs nearest sibling article: >40% of content is unique to this article (not a near-duplicate of a comparison/cluster/hub sibling) — see references/thin-content.md | PASS / FAIL |
