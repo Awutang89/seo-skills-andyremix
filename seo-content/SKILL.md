@@ -1113,6 +1113,16 @@ The hardest to fix:
 - **Distance from Subject**: Writing about, not from experience of.
 - **Uniform Certainty**: Every statement equally confident. Humans hedge where uncertain, commit where sure.
 
+**5. Sentence-Shape Tells**
+
+The three categories above catch words, structures, and voice. A fourth layer survives all of them: sentences built the way a model builds sentences. "Serves as" instead of "is." A tacked-on "-ing" clause that adds no fact. A false range. An aphorism standing in for a claim. These pass a word-list sweep and a burstiness check untouched, which is why they are what still reads as AI after everything else is clean.
+
+Eleven patterns with before/after examples, plus the SEO guardrails that keep them from fighting the keyword and NeuronWriter rules: `references/ai-writing-patterns.md`. Run that file after this word-level sweep.
+
+**6. Do Not Over-Scrub**
+
+Every rule in this phase deletes text. Real writers hit these patterns constantly, and a humanization pass run against a scorer plus a 60-row QA gate will happily sand a good article into a flat one. Before cutting, check the passage against the false-positive list and the human-signal list in `references/ai-writing-patterns.md` (Parts 2 and 3). Specific hard-to-fabricate detail, mixed feelings, uneven sentence length, and genuine asides are evidence of a person writing — preserve them. Look for **clusters** of tells, not isolated instances.
+
 ### Before/After Examples
 
 **AI Version:**
@@ -1159,6 +1169,8 @@ Human content has these. AI content doesn't. Add them:
 **Tangents and asides:**
 > "This is the part where most guides tell you to 'create quality content.' (Useless advice.) What does that actually mean? Here's the specific bar to clear..."
 
+**Where candor turns into a tell:** the examples above use "honestly" and a parenthetical aside mid-sentence, which is ordinary in candid writing and stays. What does not: the standalone theatrical pause — a one-word question or aside used as a hook before an ordinary point. *"Is it worth the price? Honestly? It depends on how often you'll use it."* Same for "Look," "Here's the thing," "The thing is," and "Let's be honest" opening a paragraph. A person being candid says the thing; the fake-candid pause-and-reveal is a model performing candor. Keep the opinion, cut the drumroll.
+
 ### Rhythm Variation
 
 AI writes in monotonous rhythm—similar sentence lengths, parallel structures, predictable patterns. Fix it:
@@ -1174,8 +1186,10 @@ Really.
 
 **Quantified targets (check per paragraph):**
 - At least one sentence **under 8 words** in every paragraph — the short punch that breaks the rhythm.
+- **But no more than two short sentences in a row.** One clipped sentence lands a point. Three stacked back to back stop reading as emphasis and start reading as manufactured drama — the staccato pattern is itself an AI tell, and hitting the under-8-words target by chaining fragments trades one tell for another. The target is a floor for variation, not a licence to write in fragments.
 - **Never more than 3 long sentences in a row** — after the third, force a short one.
 - **At most 1 em-dash per paragraph** — beyond that, switch to a comma, colon, period, or parentheses.
+- **Same cap covers en dashes (–), spaced em dashes ( — ), and double hyphens ( -- )** — all three are the same tell wearing different punctuation, and a Ctrl+F for `—` alone misses two of them.
 
 ### The Primary-Source Register (Comparison / Listicle / Product-Review types)
 
@@ -1196,6 +1210,11 @@ Before publishing, run through:
 [ ] No AI words — Ctrl+F the core 40 in references/llm-words-to-avoid.md
 [ ] No AI phrases — check Section 2 of references/llm-words-to-avoid.md
 [ ] No em dash overuse (—) — replace with comma, colon, period, or parens based on context
+[ ] Dash sweep covers en dashes (–), spaced em dashes ( — ) and double hyphens ( -- ), not just —
+[ ] Sentence-shape tells — run the Part 4 quick scan in references/ai-writing-patterns.md (copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, artifacts)
+[ ] No stacked fragments — never 3+ short sentences in a row (manufactured drama)
+[ ] No standalone fake-candid openers ("Honestly?", "Look,", "Here's the thing")
+[ ] Over-scrub check — human-signal passages left intact (Part 3 of references/ai-writing-patterns.md); tells judged in clusters, not isolation
 [ ] Not everything in threes
 [ ] At least one personal opinion stated directly
 [ ] At least one specific number from real experience
@@ -1514,7 +1533,10 @@ Run this as the first pass of Phase 7 — a fine-tooth-comb read of the humanize
 **Rules it audits against (defined in Phase 5 — apply them, don't re-list):**
 - **Tics and stock phrases** — the Phrase-Level Tells list (incl. "buckle up," "picture this," "the bottom line," opening with "So," ending a section on a rhetorical question).
 - **Banned words and empty connectives** — the core-40 (`references/llm-words-to-avoid.md`) plus *moreover, furthermore, additionally, notably, ultimately, that said*.
-- **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, ≤1 em-dash per paragraph.
+- **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, no 3+ short sentences in a row, ≤1 dash per paragraph across `—`, `–`, ` — ` and ` -- `.
+- **Sentence shapes** — the Part 4 quick scan in `references/ai-writing-patterns.md`. This is the layer that survives the word sweep, so it earns a real pass here, not a skim: copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling.
+
+**The counterweight:** before flagging, check the passage against Parts 2 and 3 of `references/ai-writing-patterns.md`. A single em dash, one *however*, curly quotes, or one short emphatic sentence is not a finding. Specific hard-to-fabricate detail, mixed feelings, and genuine asides are human signals — leave them alone. Flag clusters, not instances. A row that removes a real writer's fingerprint is a worse outcome than a row you didn't file.
 
 **Five audit-only checks (judgments, not bulk rules):**
 - **Opening leads with the point** — flag any background, definition, or "in this post we'll cover" setup that delays the substance past the first sentence. (Cross-checks the First 200 Words Rule.)
@@ -1637,8 +1659,13 @@ Output this table in full before writing the files — every row, every check, e
 | No AI-isms: delve, landscape, comprehensive, robust, etc. | PASS / FAIL |
 | No corporate speak: leverage, synergy, utilize, etc. | PASS / FAIL |
 | No tics or empty connectives: buckle up, picture this, the bottom line, opening "So,", section-ending rhetorical question, moreover/furthermore/additionally/notably/ultimately/that said | PASS / FAIL |
-| No em dash overuse (—) — Ctrl+F for `—`; ≤1 per paragraph, replace extras with comma/colon/period/parens | PASS / FAIL |
-| Sentence length varies — ≥1 sentence under 8 words per paragraph, never >3 long sentences in a row | PASS / FAIL |
+| No em dash overuse — ≤1 per paragraph across `—`, `–`, ` — ` and ` -- ` combined; replace extras with comma/colon/period/parens | PASS / FAIL |
+| Sentence length varies — ≥1 sentence under 8 words per paragraph, never >3 long sentences in a row, never 3+ short sentences in a row | PASS / FAIL |
+| Sentence-shape tells cleared — Part 4 quick scan run (see references/ai-writing-patterns.md): no copula avoidance, "-ing" decoration, negative parallelism or tailing negation, false ranges, authority tropes, aphorism formulas, fragmented headers, or speculative gap-filling | PASS / FAIL |
+| Predicate-position compounds unhyphenated (the build is high quality) while attributive keep the hyphen (a high-quality build) — keyword-register terms exempt and unchanged | PASS / FAIL |
+| One referent, one name inside a paragraph — no synonym cycling in consecutive sentences (NeuronWriter term variety still applies across the article) | PASS / FAIL |
+| No standalone fake-candid openers ("Honestly?", "Look,", "Here's the thing") — mid-sentence candor is fine | PASS / FAIL |
+| Over-scrub check — specific detail, mixed feelings, asides and uneven rhythm preserved, not sanded flat (Part 3 of references/ai-writing-patterns.md) | PASS / FAIL |
 | Reads naturally out loud (no textbook stiffness) | PASS / FAIL |
 | Sounds like a specific person, not a committee | PASS / FAIL |
 | Editorial line-edit audit run; every flagged violation fixed or accepted by reviewer (see Editorial Line-Edit Audit) | PASS / FAIL |
