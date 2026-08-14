@@ -1117,11 +1117,11 @@ The hardest to fix:
 
 The three categories above catch words, structures, and voice. A fourth layer survives all of them: sentences built the way a model builds sentences. "Serves as" instead of "is." A tacked-on "-ing" clause that adds no fact. A false range. An aphorism standing in for a claim. These pass a word-list sweep and a burstiness check untouched, which is why they are what still reads as AI after everything else is clean.
 
-Eleven patterns with before/after examples, plus the SEO guardrails that keep them from fighting the keyword and NeuronWriter rules: `references/ai-writing-patterns.md`. Run that file after this word-level sweep.
+Fourteen patterns with before/after examples, plus the SEO guardrails that keep them from fighting the keyword, E-E-A-T, and NeuronWriter rules: `references/ai-writing-patterns.md`. Run that file after this word-level sweep.
 
 **6. Do Not Over-Scrub**
 
-Every rule in this phase deletes text. Real writers hit these patterns constantly, and a humanization pass run against a scorer plus a 60-row QA gate will happily sand a good article into a flat one. Before cutting, check the passage against the false-positive list and the human-signal list in `references/ai-writing-patterns.md` (Parts 2 and 3). Specific hard-to-fabricate detail, mixed feelings, uneven sentence length, and genuine asides are evidence of a person writing — preserve them. Look for **clusters** of tells, not isolated instances.
+Every rule in this phase deletes text. Real writers hit these patterns constantly, and a humanization pass run against a scorer plus a QA gate this long will happily sand a good article into a flat one. Before cutting, check the passage against the false-positive list and the human-signal list in `references/ai-writing-patterns.md` (Parts 2 and 3). Specific hard-to-fabricate detail, mixed feelings, uneven sentence length, and genuine asides are evidence of a person writing — preserve them. Look for **clusters** of tells, not isolated instances.
 
 ### Before/After Examples
 
@@ -1211,7 +1211,7 @@ Before publishing, run through:
 [ ] No AI phrases — check Section 2 of references/llm-words-to-avoid.md
 [ ] No em dash overuse (—) — replace with comma, colon, period, or parens based on context
 [ ] Dash sweep covers en dashes (–), spaced em dashes ( — ) and double hyphens ( -- ), not just —
-[ ] Sentence-shape tells — run the Part 4 quick scan in references/ai-writing-patterns.md (copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, artifacts)
+[ ] Sentence-shape tells — run the Part 4 quick scan in references/ai-writing-patterns.md (copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, artifacts, significance inflation, formulaic outlook section, subjectless fragments)
 [ ] No stacked fragments — never 3+ short sentences in a row (manufactured drama)
 [ ] No standalone fake-candid openers ("Honestly?", "Look,", "Here's the thing")
 [ ] Over-scrub check — human-signal passages left intact (Part 3 of references/ai-writing-patterns.md); tells judged in clusters, not isolation
@@ -1534,7 +1534,8 @@ Run this as the first pass of Phase 7 — a fine-tooth-comb read of the humanize
 - **Tics and stock phrases** — the Phrase-Level Tells list (incl. "buckle up," "picture this," "the bottom line," opening with "So," ending a section on a rhetorical question).
 - **Banned words and empty connectives** — the core-40 (`references/llm-words-to-avoid.md`) plus *moreover, furthermore, additionally, notably, ultimately, that said*.
 - **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, no 3+ short sentences in a row, ≤1 dash per paragraph across `—`, `–`, ` — ` and ` -- `.
-- **Sentence shapes** — the Part 4 quick scan in `references/ai-writing-patterns.md`. This is the layer that survives the word sweep, so it earns a real pass here, not a skim: copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling.
+- **Sentence shapes** — the Part 4 quick scan in `references/ai-writing-patterns.md`. This is the layer that survives the word sweep, so it earns a real pass here, not a skim: copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, significance inflation, subjectless fragments.
+- **The closing section** — if the last H2 is an outlook or challenges section, does it carry a date, a source, and a position? If not, flag it for cutting (pattern 13). This is the one finding where deleting a whole section is usually the right call.
 
 **The counterweight:** before flagging, check the passage against Parts 2 and 3 of `references/ai-writing-patterns.md`. A single em dash, one *however*, curly quotes, or one short emphatic sentence is not a finding. Specific hard-to-fabricate detail, mixed feelings, and genuine asides are human signals — leave them alone. Flag clusters, not instances. A row that removes a real writer's fingerprint is a worse outcome than a row you didn't file.
 
@@ -1661,7 +1662,9 @@ Output this table in full before writing the files — every row, every check, e
 | No tics or empty connectives: buckle up, picture this, the bottom line, opening "So,", section-ending rhetorical question, moreover/furthermore/additionally/notably/ultimately/that said | PASS / FAIL |
 | No em dash overuse — ≤1 per paragraph across `—`, `–`, ` — ` and ` -- ` combined; replace extras with comma/colon/period/parens | PASS / FAIL |
 | Sentence length varies — ≥1 sentence under 8 words per paragraph, never >3 long sentences in a row, never 3+ short sentences in a row | PASS / FAIL |
-| Sentence-shape tells cleared — Part 4 quick scan run (see references/ai-writing-patterns.md): no copula avoidance, "-ing" decoration, negative parallelism or tailing negation, false ranges, authority tropes, aphorism formulas, fragmented headers, or speculative gap-filling | PASS / FAIL |
+| Sentence-shape tells cleared — Part 4 quick scan run (see references/ai-writing-patterns.md): no copula avoidance, "-ing" decoration, negative parallelism or tailing negation, false ranges, authority tropes, aphorism formulas, fragmented headers, speculative gap-filling, or subjectless fragments | PASS / FAIL |
+| Authority demonstrated, not declared — no significance/legacy inflation ("cemented its position as", "a testament to"); brand and vendor claims carry dates, warranty terms, or certifications | PASS / FAIL |
+| No formulaic outlook section — any closing "Challenges / Future / Looking Ahead" H2 carries a date, a source, and a position, or has been cut | PASS / FAIL |
 | Predicate-position compounds unhyphenated (the build is high quality) while attributive keep the hyphen (a high-quality build) — keyword-register terms exempt and unchanged | PASS / FAIL |
 | One referent, one name inside a paragraph — no synonym cycling in consecutive sentences (NeuronWriter term variety still applies across the article) | PASS / FAIL |
 | No standalone fake-candid openers ("Honestly?", "Look,", "Here's the thing") — mid-sentence candor is fine | PASS / FAIL |

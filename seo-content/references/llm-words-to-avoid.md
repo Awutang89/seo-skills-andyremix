@@ -149,6 +149,26 @@ These phrases are so over-used they signal AI writing before the reader processe
 - "Little did [they] know..."
 - "Hustle and bustle"
 
+### Filler phrases with a shorter exact equivalent
+
+These are not stylistic preferences — each has a one-word replacement that loses nothing. AI reaches for
+the long form because it is statistically common in formal text.
+
+| Filler | Replace with |
+|---|---|
+| due to the fact that | because |
+| in order to | to |
+| in the event that | if |
+| for the purpose of | to, for |
+| at this point in time | now |
+| in spite of the fact that | although |
+| has the ability to | can |
+| a majority of | most |
+| in close proximity to | near |
+| prior to | before |
+| subsequent to | after |
+| in the near future | soon |
+
 ### Conclusion/summary phrases
 - "In conclusion..."
 - "In summary..."

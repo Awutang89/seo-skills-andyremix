@@ -22,7 +22,7 @@ without tying the rule to any one vertical.
 
 ---
 
-## Part 1: The eleven patterns
+## Part 1: The fourteen patterns
 
 ### 1. Copula avoidance
 
@@ -261,6 +261,101 @@ one document, which usually means a block was pasted in from somewhere else and 
 
 ---
 
+### 12. Significance and legacy inflation
+
+Asserting that something matters instead of showing why. The model reaches for importance it has not
+earned, usually in brand, vendor, or "about the manufacturer" blocks where it has the fewest facts.
+
+**Watch:** cemented its position as, marked a turning point, stands as a testament to, has revolutionised
+the industry, left an indelible mark, cornerstone of, paved the way for, enduring legacy, a defining
+moment in
+
+**Before:**
+> Founded in 1935, the company has cemented its position as a cornerstone of the American manufacturing
+> industry, leaving an indelible mark on generations of workshops.
+
+**After:**
+> The company has built its units in the same Ohio plant since 1935, and ships them with a 10-year
+> warranty where most competitors stop at five.
+
+Several of these words (*testament, enduring, indelible*) are already on the Ctrl+F list. This pattern is
+the sentence *shape* that survives swapping them out — "has established itself as a leading provider"
+contains no flagged word and commits the same offence.
+
+**SEO guardrail — this does not weaken E-E-A-T.** Phase 3 asks you to establish authority, and that still
+stands. The difference is direction: authority is **demonstrated** with dated specifics, warranty terms,
+certifications, and production facts, then the reader concludes it matters. Inflation **declares** the
+conclusion and supplies nothing. Cut the declaration, keep the facts — the section usually gets shorter
+and stronger.
+
+---
+
+### 13. Formulaic outlook sections
+
+A closing section that exists because the template expects one, not because there was anything left to
+say. Generic tensions, hedged predictions, no dated specifics, no position.
+
+**Watch (H2s):** Challenges and Future Prospects, Challenges and Opportunities, The Future of X, Looking
+Ahead, What's Next for X, Final Thoughts
+
+**Before:**
+> ## Challenges and Future Outlook
+>
+> While these units offer many advantages, challenges remain. Cost and maintenance requirements continue
+> to be considerations for many businesses. Looking ahead, the industry is expected to evolve as
+> technology advances and efficiency demands increase.
+
+**After:**
+> Cut the section. If nothing dated and specific belongs here, its absence is an improvement.
+
+Or replace it with a real one:
+
+> ## What Changes in 2027
+>
+> The current cell chemistry is being phased out across the 2027 model year, and the replacement carries a
+> different charge profile. If you are buying this year, confirm which chemistry ships in your unit — the
+> outgoing stock is discounted now, and the two are not cross-compatible for warranty purposes.
+
+The test is whether the section survives being read by someone who already knows the topic. Dated
+specifics, a named source, and a stated position pass. Hedged futurology does not.
+
+**This is the "Challenges" section named in the cluster test in Part 2.** It rarely appears alone — it
+usually arrives with a rule-of-three and an *evolving landscape*.
+
+**SEO guardrail — do not confuse this with information gain.** Phase 2 rewards a forward-looking angle
+competitors lack, and a genuine trends section is exactly that. Keep the one that carries a date, a
+source, and a consequence. Cut the one that hedges.
+
+---
+
+### 14. Subjectless fragments
+
+A noun phrase punctuated as a sentence, continuing the previous subject instead of stating one. Endemic
+in product roundups, where the model runs a spec sentence and then trails verdict fragments after it.
+
+**Before:**
+> The unit sustains 40 amps continuous. Ideal for workshops running multiple tools at once. A solid choice
+> for anyone needing steady output.
+
+**After:**
+> The unit sustains 40 amps continuous — enough for a workshop to run two tools off the same circuit
+> without the supply sagging.
+
+The fragments carried no fact the first sentence did not already imply. Fixing them usually merges the
+pile into one sentence that says more.
+
+**SEO guardrail — this is not a ban on short sentences, and the distinction is narrow.** Phase 5 requires
+one sentence under eight words per paragraph, Part 2 protects the single emphatic fragment, and both
+still stand. A deliberate fragment lands a point the reader feels: *Really. Not even close.* A subjectless
+fragment makes the reader reconstruct a subject the model dropped. Ask what work it does — emphasis, or
+a dropped subject. Emphasis stays.
+
+Upstream pairs this with passive voice, which is already handled: `humanizer_scorer.py` scores passive as
+one of its six dimensions and the Phase 7 QA gate caps it at 10% of sentences. Only the fragment half was
+missing.
+
+---
+
 ### Vocabulary additions
 
 Words from the upstream high-frequency list not currently in `llm-words-to-avoid.md`. Add them to the
@@ -275,8 +370,8 @@ align with, key (as an adjective: "a key factor")
 
 ## Part 2: What NOT to flag
 
-Every rule above deletes text. Without a counterweight, a humanization pass run by a scorer plus a 60-row
-QA gate will sand a good article down to a flat one. Real writers hit these patterns constantly.
+Every rule above deletes text. Without a counterweight, a humanization pass run by a scorer plus a QA gate
+that long will sand a good article down to a flat one. Real writers hit these patterns constantly.
 
 None of the following is evidence of AI writing on its own:
 
@@ -340,6 +435,9 @@ Phase 7 Editorial Line-Edit Audit — flag, do not rewrite. One row per hit.
 | 9 | Speculative gap-fill | Ctrl+F: likely, it is believed, details are limited |
 | 10 | Synonym cycling | Read consecutive sentences — one referent, one name |
 | 11 | Artifacts / emoji / quotes | Ctrl+F: "I hope", emoji in headings, mixed quote styles |
+| 12 | Significance inflation | Ctrl+F: cemented, testament, cornerstone, paved the way, turning point |
+| 13 | Formulaic outlook section | Read the last H2 — any date, source, or position in it? |
+| 14 | Subjectless fragments | Scan for sentences opening with an adjective: Ideal for, Perfect for |
 
 ---
 
@@ -359,5 +457,29 @@ Recorded so the next sync does not re-litigate these.
 - **Voice calibration from a writing sample.** Superseded by the brand voice profiles, which are stronger
   for this use — a maintained profile beats a pasted sample.
 
+---
+
+## Covered elsewhere — deliberately not duplicated here
+
+The remaining upstream patterns are handled by other files in the stack. Listed so a future sync can
+confirm coverage without re-reading all three.
+
+| Upstream pattern | Where we handle it |
+|---|---|
+| Overused AI vocabulary | `llm-words-to-avoid.md` — 100+ words, phrase lists, the Core 40 sweep |
+| Filler phrases | `llm-words-to-avoid.md` Section 2 (transition/connector phrases) |
+| Signposting ("let's dive in") | `llm-words-to-avoid.md` Section 2 |
+| Rule of three overuse | `llm-words-to-avoid.md` Section 5 (Triple Pattern); checklist Category 3 |
+| Generic positive conclusions | `llm-words-to-avoid.md` Section 5 (Summary Sandwich); checklist Category 3 |
+| Promotional language | `llm-words-to-avoid.md` Section 4 (buzzwords) |
+| Excessive hedging | `content-humanizer/references/ai-tells-checklist.md` Category 2 |
+| Vague attributions / weasel words | checklist Category 2 (Vague authority claims) |
+| Overuse of boldface | checklist Category 4 |
+| Sycophantic / servile tone | checklist Category 5 (False warmth) |
+| Passive voice | `humanizer_scorer.py` dimension + Phase 7 QA gate (≤10% of sentences) |
+
+---
+
 Upstream source: https://github.com/blader/humanizer — check the version there before the next sync.
-Compared at v2.9.1 (2026-08).
+Compared at v2.9.1 (2026-08). Re-audited 2026-08-13 against the same upstream version: no upstream
+changes, but a full 33-pattern coverage pass found three genuine gaps, added above as patterns 12-14.
