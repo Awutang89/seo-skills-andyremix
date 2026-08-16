@@ -297,6 +297,35 @@ bolster, beacon
 
 ---
 
+## Section 7: The 2026 tier — flag-only, dated
+
+**Read the caveat before using this list.** Everything above is a kill list: find the word, replace it.
+This section is not. These are ordinary English words that a 2026 corpus study found models overusing
+relative to human writers. Several are load-bearing in technical and SEO copy, and banning them outright
+would damage good writing.
+
+```
+significant, increasingly, consequences, implications,
+framework, considerations, interdependence
+```
+
+**How to use it:** judge **density, not presence**. One *significant* in a 2,000-word article is a word
+doing its job. Three in one section, plus a *framework* and a *considerations*, is a model's vocabulary
+showing through. The working rule: never two from this list in the same paragraph.
+
+**Why it is dated and separate.** Vocabulary tells rotate as models retrain on the feedback that flags
+them. The source for this tier documents two rules reversing inside twelve months, and much of the 2025
+list above (*delve*, *tapestry*) is already retired as a live signal even though it remains a cliché.
+Treat this section as perishable.
+
+- **Tier added:** 2026-08-16
+- **Source:** `ama-zingco/anti-ai-writing-skill`, citing a July 2026 corpus study
+- **Re-check by:** 2027-02-16, or sooner if detection behaviour visibly shifts
+
+If a word here is genuinely the right word, use it. That instruction does not apply to Section 1.
+
+---
+
 ## Source Links
 
 - GitHub Gist (rolling community list): https://gist.github.com/chrisgherbert/c734ec50ae464135be57cd03b84281f9

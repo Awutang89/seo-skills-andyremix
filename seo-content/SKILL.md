@@ -1117,7 +1117,9 @@ The hardest to fix:
 
 The three categories above catch words, structures, and voice. A fourth layer survives all of them: sentences built the way a model builds sentences. "Serves as" instead of "is." A tacked-on "-ing" clause that adds no fact. A false range. An aphorism standing in for a claim. These pass a word-list sweep and a burstiness check untouched, which is why they are what still reads as AI after everything else is clean.
 
-Fourteen patterns with before/after examples, plus the SEO guardrails that keep them from fighting the keyword, E-E-A-T, and NeuronWriter rules: `references/ai-writing-patterns.md`. Run that file after this word-level sweep.
+Twenty-three patterns with before/after examples, plus the SEO guardrails that keep them from fighting the keyword, E-E-A-T, answer-capsule, and NeuronWriter rules: `references/ai-writing-patterns.md`. Run that file after this word-level sweep.
+
+The file splits into two halves that fail differently. **Part 1 (1-14) is sentence shapes** — "serves as," the tacked-on "-ing" clause, the false range. **Part 1B (15-23) is distributional** — words a little too long, punctuation a little too sparse, clauses chained with "and" instead of cut. A draft can pass every shape check and still read as machine-written because of the second half, so run both.
 
 **6. Do Not Over-Scrub**
 
@@ -1188,7 +1190,8 @@ Really.
 - At least one sentence **under 8 words** in every paragraph — the short punch that breaks the rhythm.
 - **But no more than two short sentences in a row.** One clipped sentence lands a point. Three stacked back to back stop reading as emphasis and start reading as manufactured drama — the staccato pattern is itself an AI tell, and hitting the under-8-words target by chaining fragments trades one tell for another. The target is a floor for variation, not a licence to write in fragments.
 - **Never more than 3 long sentences in a row** — after the third, force a short one.
-- **At most 1 em-dash per paragraph** — beyond that, switch to a comma, colon, period, or parentheses.
+- **At most 1 dash in the whole article.** Not one per paragraph. Readers now read the em dash as an AI signature, so the budget for a long piece is a single dash, and most articles are better with none.
+- **Replace the dash, never just delete it.** Swap in a comma, semicolon, colon, or parentheses. Deleting the punctuation and letting the sentence run long trades one tell for a worse one: sparse punctuation is now a stronger AI signal than the dash ever was. See pattern 19 in `references/ai-writing-patterns.md`.
 - **Same cap covers en dashes (–), spaced em dashes ( — ), and double hyphens ( -- )** — all three are the same tell wearing different punctuation, and a Ctrl+F for `—` alone misses two of them.
 
 ### The Primary-Source Register (Comparison / Listicle / Product-Review types)
@@ -1209,9 +1212,13 @@ Before publishing, run through:
 ```
 [ ] No AI words — Ctrl+F the core 40 in references/llm-words-to-avoid.md
 [ ] No AI phrases — check Section 2 of references/llm-words-to-avoid.md
-[ ] No em dash overuse (—) — replace with comma, colon, period, or parens based on context
+[ ] At most 1 dash in the entire article (—) — replace extras with comma, semicolon, colon, or parens, never by deleting the punctuation
 [ ] Dash sweep covers en dashes (–), spaced em dashes ( — ) and double hyphens ( -- ), not just —
-[ ] Sentence-shape tells — run the Part 4 quick scan in references/ai-writing-patterns.md (copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, artifacts, significance inflation, formulaic outlook section, subjectless fragments)
+[ ] Sentence-shape tells — Part 4 quick scan rows 1-14 in references/ai-writing-patterns.md (copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, artifacts, significance inflation, formulaic outlook section, subjectless fragments)
+[ ] Distributional tells — Part 4 quick scan rows 15-23 (long Latinate words, nominalizations, "and" chaining, adverb density, punctuation scarcity, contrast framing, hypophora in body prose, attribution verbs, quote homogeneity)
+[ ] Punctuation density — no 100-word paragraph with 3 or fewer commas/semicolons/parens; every removed dash became punctuation, not nothing
+[ ] Every named person traces to a real, checkable source — no invented experts, no unverifiable "Dr."
+[ ] 2026 vocabulary tier checked on density, not presence (Section 7 of references/llm-words-to-avoid.md) — never two from that list in one paragraph
 [ ] No stacked fragments — never 3+ short sentences in a row (manufactured drama)
 [ ] No standalone fake-candid openers ("Honestly?", "Look,", "Here's the thing")
 [ ] Over-scrub check — human-signal passages left intact (Part 3 of references/ai-writing-patterns.md); tells judged in clusters, not isolation
@@ -1533,8 +1540,9 @@ Run this as the first pass of Phase 7 — a fine-tooth-comb read of the humanize
 **Rules it audits against (defined in Phase 5 — apply them, don't re-list):**
 - **Tics and stock phrases** — the Phrase-Level Tells list (incl. "buckle up," "picture this," "the bottom line," opening with "So," ending a section on a rhetorical question).
 - **Banned words and empty connectives** — the core-40 (`references/llm-words-to-avoid.md`) plus *moreover, furthermore, additionally, notably, ultimately, that said*.
-- **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, no 3+ short sentences in a row, ≤1 dash per paragraph across `—`, `–`, ` — ` and ` -- `.
-- **Sentence shapes** — the Part 4 quick scan in `references/ai-writing-patterns.md`. This is the layer that survives the word sweep, so it earns a real pass here, not a skim: copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, significance inflation, subjectless fragments.
+- **Rhythm** — the quantified targets: ≥1 sentence under 8 words per paragraph, ≤3 long sentences in a row, no 3+ short sentences in a row, ≤1 dash **per article** across `—`, `–`, ` — ` and ` -- `.
+- **Sentence shapes** — the Part 4 quick scan rows 1-14 in `references/ai-writing-patterns.md`. This is the layer that survives the word sweep, so it earns a real pass here, not a skim: copula avoidance, "-ing" decoration, negative parallelism, predicate hyphenation, false ranges, authority tropes, aphorisms, fragmented headers, speculative gap-fill, synonym cycling, significance inflation, subjectless fragments.
+- **Distributional tells** — quick scan rows 15-23. Read a dense paragraph and check four things: are the words longer than they need to be, is the punctuation too sparse, are clauses chained with "and," and do the quotes sound like different people. These do not announce themselves in a single sentence, so judge them across a section rather than a line.
 - **The closing section** — if the last H2 is an outlook or challenges section, does it carry a date, a source, and a position? If not, flag it for cutting (pattern 13). This is the one finding where deleting a whole section is usually the right call.
 
 **The counterweight:** before flagging, check the passage against Parts 2 and 3 of `references/ai-writing-patterns.md`. A single em dash, one *however*, curly quotes, or one short emphatic sentence is not a finding. Specific hard-to-fabricate detail, mixed feelings, and genuine asides are human signals — leave them alone. Flag clusters, not instances. A row that removes a real writer's fingerprint is a worse outcome than a row you didn't file.
@@ -1660,9 +1668,12 @@ Output this table in full before writing the files — every row, every check, e
 | No AI-isms: delve, landscape, comprehensive, robust, etc. | PASS / FAIL |
 | No corporate speak: leverage, synergy, utilize, etc. | PASS / FAIL |
 | No tics or empty connectives: buckle up, picture this, the bottom line, opening "So,", section-ending rhetorical question, moreover/furthermore/additionally/notably/ultimately/that said | PASS / FAIL |
-| No em dash overuse — ≤1 per paragraph across `—`, `–`, ` — ` and ` -- ` combined; replace extras with comma/colon/period/parens | PASS / FAIL |
+| No em dash overuse — ≤1 in the **whole article** across `—`, `–`, ` — ` and ` -- ` combined; extras replaced with comma/semicolon/colon/parens, not deleted | PASS / FAIL |
 | Sentence length varies — ≥1 sentence under 8 words per paragraph, never >3 long sentences in a row, never 3+ short sentences in a row | PASS / FAIL |
-| Sentence-shape tells cleared — Part 4 quick scan run (see references/ai-writing-patterns.md): no copula avoidance, "-ing" decoration, negative parallelism or tailing negation, false ranges, authority tropes, aphorism formulas, fragmented headers, speculative gap-filling, or subjectless fragments | PASS / FAIL |
+| Sentence-shape tells cleared — Part 4 quick scan rows 1-14 (see references/ai-writing-patterns.md): no copula avoidance, "-ing" decoration, negative parallelism or tailing negation, false ranges, authority tropes, aphorism formulas, fragmented headers, speculative gap-filling, or subjectless fragments | PASS / FAIL |
+| Distributional tells cleared — quick scan rows 15-23: no long-Latinate padding, nominalizations, "and" chaining, adverb stacking, contrast framing, or body-prose hypophora | PASS / FAIL |
+| Punctuation at human density — no 100-word paragraph with ≤3 commas/semicolons/parens; every removed dash replaced with punctuation rather than deleted | PASS / FAIL |
+| Attribution and quotes — "says" used as the default attribution verb; no two speakers interchangeable; every named person traces to a checkable source | PASS / FAIL |
 | Authority demonstrated, not declared — no significance/legacy inflation ("cemented its position as", "a testament to"); brand and vendor claims carry dates, warranty terms, or certifications | PASS / FAIL |
 | No formulaic outlook section — any closing "Challenges / Future / Looking Ahead" H2 carries a date, a source, and a position, or has been cut | PASS / FAIL |
 | Predicate-position compounds unhyphenated (the build is high quality) while attributive keep the hyphen (a high-quality build) — keyword-register terms exempt and unchanged | PASS / FAIL |

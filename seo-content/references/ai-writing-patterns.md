@@ -356,6 +356,213 @@ missing.
 
 ---
 
+## Part 1B: Statistical and journalism tells
+
+Patterns 1-14 describe sentence *shapes*. This group is different in kind and comes from a different
+source: a 2026 corpus study of 55,940 sentences and 1.2m words comparing ChatGPT, Claude, Gemini and Grok
+against professional journalism and bestselling fiction, plus a 2025 detection study. These are
+**distributional** tells. Each one is a measurable difference in how often a model reaches for something,
+not a phrase you can Ctrl+F once and be done with.
+
+That makes them the layer under everything above. A draft can pass all fourteen patterns and still read as
+machine-written because its words are a little too long, its punctuation a little too sparse, and its
+sentences chained with "and" instead of cut.
+
+Adapted from `ama-zingco/anti-ai-writing-skill` (MIT). Its own warning applies and is worth repeating: **the
+tells decay.** Two of its rules reversed between 2025 and 2026 because models train on the feedback that
+flags them. Date-stamp anything you adopt here.
+
+---
+
+### 15. Long Latinate words
+
+Word length is one of the cleanest human/machine separators measured. Every major model writes far more
+eight-letter-plus words than journalists do. The fix is Anglo-Saxon over Latinate, not "simpler writing."
+
+**Watch:** utilize, facilitate, commence, demonstrate, approximately, additional, sufficient, requirement,
+implement, individual, purchase, obtain, assistance, initiate
+
+**Before:**
+> Operators should utilize the controller to facilitate additional capacity when requirements exceed
+> approximately 40 amps.
+
+**After:**
+> Use the controller to add capacity when the load goes past 40 amps.
+
+Twenty-two words become thirteen and nothing is lost. **Do not flatten a precise technical term**, though.
+Words like *reciprocating* or *displacement* are long because they are exact. The rule targets long words
+chosen over short synonyms, not long words that carry meaning.
+
+---
+
+### 16. Nominalizations
+
+Models turn verbs into nouns and then need a weak verb to carry the sentence. The buried verb is almost
+always the better one.
+
+**Watch:** conducted an evaluation of, performed an inspection of, provides protection for, offers
+improvement in, made the decision to, gives consideration to, is a requirement of
+
+**Before:**
+> We conducted an evaluation of the unit and made a determination that replacement was necessary.
+
+**After:**
+> We inspected the unit and decided to replace it.
+
+Fastest scan: search `-tion `, `-ment `, `-ance ` and `-ity `. Where one sits next to a colourless verb
+(*conducted, performed, provides, offers, made*), the verb is hiding in the noun.
+
+---
+
+### 17. Overuse of "and"
+
+"And" is the single most overused word in model prose, and it is the mechanism behind their long
+sentences: clauses get chained rather than cut. This pattern is the cause; pattern 23's burstiness
+failure is the symptom.
+
+**The check:** find any sentence with two or more "and"s. Try replacing one with a period.
+
+**Before:**
+> The unit sustains 40 amps and needs a dedicated circuit and most buyers undersize the wiring, and then
+> they wonder why the breaker trips.
+
+**After:**
+> The unit sustains 40 amps, so it needs a dedicated circuit. Most buyers undersize the wiring, then
+> wonder why the breaker trips.
+
+Most of the time the sentence improves and the paragraph picks up rhythm. Not every "and" is a fault:
+a genuine list needs them. Two or more in one sentence is the trigger to look, not an automatic cut.
+
+---
+
+### 18. Adverb density
+
+Models lean on adverbs, especially `-ly` forms, where a stronger verb would do. *Increasingly* is the
+worst offender measured across all major models.
+
+**Watch:** increasingly, significantly, dramatically, effectively, essentially, particularly, notably,
+consistently, ultimately, simply, truly, incredibly
+
+**Before:**
+> These units are increasingly popular because they significantly reduce heat and dramatically extend
+> service life.
+
+**After:**
+> These units run cooler, and they last roughly twice as long.
+
+Note what the rewrite did: it replaced the adverbs with a number. That is usually the move. An adverb is
+often a placeholder where a specific quantity belongs.
+
+---
+
+### 19. Punctuation scarcity
+
+The counterintuitive one, and the reason the dash rule has a corollary. Models use **fewer** commas,
+semicolons and parentheses than human writers, and hardly any parentheses at all. Two causes: they write
+longer sentences, and they rarely quote anyone.
+
+So a naive de-AI pass makes things worse. Strip the em dashes, delete the punctuation, let the sentence
+run long, and the draft now trips a stronger signal than the one it was cleaning.
+
+**The rule:** every dash you remove becomes a comma, semicolon, colon, or parentheses. Never nothing.
+
+**Before (dash removed badly):**
+> The larger capacity handles intermittent work fine it is sustained load that kills entry-level units and
+> most buyers do not find that out until the warranty has expired.
+
+**After:**
+> The larger capacity handles intermittent work fine; sustained load is what kills entry-level units. Most
+> buyers do not find out until the warranty has expired.
+
+**The scan:** read a paragraph and count commas, semicolons and parentheses. If a 100-word paragraph has
+three or fewer marks total, it is almost certainly too sparse. Long sentences with no internal punctuation
+are the signature.
+
+---
+
+### 20. Contrast framing
+
+Manufacturing tension between two things that are not actually in tension, using *while* or *although* as
+the hinge. Distinct from pattern 3, which covers *"not just X but Y."*
+
+**Watch:** While X, Y. Although X, Y. Though X, Y. Despite X, Y.
+
+**Before:**
+> While the premium tier costs more upfront, it offers better performance under continuous use.
+
+**After:**
+> The premium tier costs more and runs continuously. The entry tier is cheaper and needs to rest.
+
+The rewrite states both facts flatly and lets the reader weigh them. The original implies a paradox that
+was never there: higher price and higher duty rating are the same fact seen twice.
+
+Ordinary contrast is fine. The tell is **frequency** and the reflex to open with it.
+
+---
+
+### 21. Hypophora
+
+Posing a question and answering it immediately, in body prose, as a way to manufacture momentum.
+
+**SEO guardrail - this does NOT apply to headings, and the distinction is the whole point.** The
+Answer-First H2 Rule stays. The 20-25 word answer capsule after a question-based H2 stays. Those are
+document *structure*, they are what gets a page cited, and roughly three-quarters of ChatGPT-cited pages
+use them. Nothing in this pattern touches Phase 3 or Phase 6.
+
+The tell is narrower: a rhetorical question **inside a paragraph**, answered in the next breath, doing
+decorative rather than structural work.
+
+**Before:**
+> So what does that mean for your setup? It means you need at least 40 amps of continuous headroom.
+
+**After:**
+> A setup running two tools at once needs at least 40 amps of continuous headroom.
+
+Watch for *So what does that mean? Why does this matter? The answer? What is the catch?* If cutting the
+question loses nothing, it was decoration.
+
+---
+
+### 22. Attribution verbs
+
+Humans writing about sources repeat "says" and do not care. Models rotate through descriptive synonyms to
+avoid repetition, which reads as a thesaurus at work.
+
+**Watch:** notes, explains, emphasizes, highlights, observes, points out, stresses, underscores, remarks,
+adds, cautions
+
+**Before:**
+> The manufacturer notes that the unit is rated for continuous duty. A competitor emphasizes ease of
+> service, while a third highlights its warranty.
+
+**After:**
+> The manufacturer says the unit is rated for continuous duty. A competitor says its unit is easy to
+> service. A third says its warranty runs ten years.
+
+Default to *says* or *said* and let it repeat. Repetition here is invisible to readers and its absence is
+not. This connects to pattern 10: elegant variation applied to verbs instead of nouns.
+
+---
+
+### 23. Quote homogeneity and invented experts
+
+Two related failures around sourcing.
+
+**Models barely quote anyone.** That absence is itself a tell, and it is partly what drives pattern 19,
+since quoted speech brings commas and parentheses with it.
+
+**When they do quote, every speaker sounds identical** - to each other and to the surrounding article.
+Model-written quotes are complete sentences that state a position perfectly and match the article's
+register exactly. Real quotes are short, uneven, and sound like a specific person. If you could swap two
+speakers' quotes without anyone noticing, they are not real.
+
+**Invented experts** are the extreme case. Models reuse the same fictional names and hand out *Dr.*
+regardless of field. A quick scan is enough here, because Phase 1.5 already requires verified sources:
+**every named person in a draft must trace to a real, checkable source.** No exceptions, and a name you
+cannot verify gets cut rather than softened.
+
+---
+
 ### Vocabulary additions
 
 Words from the upstream high-frequency list not currently in `llm-words-to-avoid.md`. Add them to the
@@ -438,6 +645,15 @@ Phase 7 Editorial Line-Edit Audit — flag, do not rewrite. One row per hit.
 | 12 | Significance inflation | Ctrl+F: cemented, testament, cornerstone, paved the way, turning point |
 | 13 | Formulaic outlook section | Read the last H2 — any date, source, or position in it? |
 | 14 | Subjectless fragments | Scan for sentences opening with an adjective: Ideal for, Perfect for |
+| 15 | Long Latinate words | Ctrl+F: utilize, facilitate, commence, demonstrate, approximately |
+| 16 | Nominalizations | Ctrl+F: `-tion `, `-ment ` next to conducted/performed/provides/made |
+| 17 | Overuse of "and" | Any sentence with 2+ "and" - try one as a period |
+| 18 | Adverb density | Ctrl+F: increasingly, significantly, dramatically, effectively |
+| 19 | Punctuation scarcity | Count marks per 100 words - 3 or fewer is too sparse |
+| 20 | Contrast framing | Ctrl+F: "While ", "Although ", "Despite " at sentence start |
+| 21 | Hypophora (body prose only) | Ctrl+F: "So what does", "Why does this matter", "The answer?" |
+| 22 | Attribution verbs | Ctrl+F: notes, explains, emphasizes, highlights, observes |
+| 23 | Quote homogeneity / invented experts | Could two speakers swap quotes unnoticed? Every name checkable? |
 
 ---
 
@@ -447,15 +663,25 @@ Recorded so the next sync does not re-litigate these.
 
 - **Title case in headings.** Upstream flags it. The H2 conventions in this library are title-cased and
   the Phase 6 header examples depend on it. Skipped on purpose.
-- **Zero em dashes.** Upstream cuts them entirely as a hard constraint. We cap at one per paragraph
-  (Phase 5 rhythm targets) and extend detection to en dashes, spaced em dashes, and double hyphens. The
-  cap is a house style decision, not an oversight.
+- **Zero em dashes.** Upstream cuts them entirely as a hard constraint. We cap at **one per article**
+  (tightened 2026-08 from one per paragraph, per the Economist 2026 finding) and extend detection to en
+  dashes, spaced em dashes, and double hyphens. Allowing exactly one is a house style decision: a single
+  dash is not evidence of anything, and a hard zero would flag real editors. What is *not* optional is the
+  replacement rule in pattern 19 - extras become punctuation, never nothing.
 - **Inline-header vertical lists** (`- **Thing:** description`). Upstream flags the shape. This library
   uses it throughout for scannability and featured-snippet list formatting.
 - **Diff-anchored writing.** Documentation-specific. No article application.
 - **Notability and media-coverage inflation.** Wikipedia-specific.
 - **Voice calibration from a writing sample.** Superseded by the brand voice profiles, which are stronger
   for this use — a maintained profile beats a pasted sample.
+- **Scientific register in non-technical copy** (`anti-ai-writing-skill` rule 21: parameter, methodology,
+  mechanism, variable, metric). Rejected on 2026-08-16 for technical verticals, where words like *duty
+  cycle* and *displacement* are load-bearing, so the rule would fire constantly on correct writing. The
+  real target, borrowed authority in non-technical prose, is already covered by pattern 6 (authority
+  tropes). Reconsider if this library is applied to a non-technical niche.
+- **Odd-numbered paragraph counts** (rule 4: avoid 5, 7 or 9 paragraph structures). No mechanism offered
+  and no evidence given that paragraph *count* parity is detectable. Symmetric section length is the real
+  tell and the checklist already covers it.
 
 ---
 
@@ -480,6 +706,20 @@ confirm coverage without re-reading all three.
 
 ---
 
-Upstream source: https://github.com/blader/humanizer — check the version there before the next sync.
-Compared at v2.9.1 (2026-08). Re-audited 2026-08-13 against the same upstream version: no upstream
-changes, but a full 33-pattern coverage pass found three genuine gaps, added above as patterns 12-14.
+## Upstream sources
+
+Two, tracked separately because they disagree about what an AI tell even is.
+
+**1. https://github.com/blader/humanizer** — patterns 1-14. Derived from Wikipedia's "Signs of AI writing."
+Compared at v2.9.1 (2026-08). Re-audited 2026-08-13 against the same version: no upstream changes, but a
+full 33-pattern coverage pass found three gaps, added as patterns 12-14. Check the version before the next
+sync.
+
+**2. https://github.com/ama-zingco/anti-ai-writing-skill** — patterns 15-23. Derived from a 2026 corpus
+study (55,940 sentences, 1.2m words, four models against professional journalism and fiction) and a 2025
+detection study. Audited 2026-08-16 against all 25 of its rules: 13 already covered, 2 rejected above, and
+the em-dash cap tightened from one per paragraph to one per article on its evidence.
+
+The second source is the stronger evidence base, since it measures corpora rather than cataloguing
+impressions. It is also the more perishable: it states that its own tells decay and that two of its rules
+reversed inside twelve months. **Anything adopted from it needs re-checking, not just re-reading.**
