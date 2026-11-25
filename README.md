@@ -5,8 +5,8 @@ full SEO + content-marketing lifecycle: from keyword research → content →
 on-page/technical SEO → internal linking → schema → distribution → conversion.
 
 Each skill is a self-contained `SKILL.md` (plus reference files) that Claude loads
-on demand. They share one lightweight framework (`_system/`) so a brand voice you
-define once is reused everywhere. **Everything here is a niche-neutral template** —
+on demand. They share one lightweight framework (`_system/`) so a brand voice
+defined once is reused everywhere. **Everything here is a niche-neutral template** —
 examples use placeholders like `[product]`, `[category]`, `example.com`, and
 `your-store.myshopify.com`. No live sites, no data, and no API keys are included.
 
@@ -22,27 +22,27 @@ cd _system/scripts
 ```
 On Windows, run these from Git Bash, or use Option B.
 
-**Option B — manual:** copy each skill folder (and `_system/`) into your
+**Option B — manual:** copy each skill folder (and `_system/`) into the
 `~/.claude/skills/` directory (or a project-level `.claude/skills/`).
 
-Then, in any Claude conversation, start with **`/start-here`** — it scans your
-project, helps build a brand foundation, and routes you to the right skill. Or
+Then, in any Claude conversation, start with **`/start-here`** — it scans the
+project, helps build a brand foundation, and routes the request to the right skill. Or
 invoke any skill directly by name (e.g. "use keyword-research for …").
 
 ---
 
 ## How it works
 
-- **`/start-here`** is the orchestrator. It reads your project state and either
-  routes you to one skill or chains several into a workflow.
+- **`/start-here`** is the orchestrator. It reads the project state and either
+  routes the request to one skill or chains several into a workflow.
 - **Brand memory** (`_system/brand-memory.md`): skills read/write a `./brand/`
-  folder (voice, positioning, audience, keyword plan…). Define your voice once and
+  folder (voice, positioning, audience, keyword plan…). Define the voice once and
   every content skill matches it.
 - **Tool detection**: skills use an MCP server if present, else an API key from
   `.env`, else they output import-ready files. Optional integrations (all
   swappable): Replicate (images/video), DataForSEO + AnswerThePublic (keyword
   data), NeuronWriter (content scoring), Shopify (publishing). Copy
-  `.env.example` to `.env` and add your own keys — none ship in this package.
+  `.env.example` to `.env` and add the project's own keys — none ship in this package.
 
 ---
 
@@ -53,28 +53,28 @@ invoke any skill directly by name (e.g. "use keyword-research for …").
 |-------|--------------------------|
 | **start-here** | Entry point / router. Scans the project, builds brand foundation, routes any marketing request to the right skill or workflow. |
 | **brand-voice** | Extracts or builds a reusable brand voice profile so all downstream copy sounds consistent. |
-| **positioning-angles** | Generates 3–5 distinct positioning angles + headline directions — the "why this, why now" hook before you write. |
+| **positioning-angles** | Generates 3–5 distinct positioning angles + headline directions — the "why this, why now" hook before any writing starts. |
 
 ### SEO research & strategy
 | Skill | What it does on its own |
 |-------|--------------------------|
 | **keyword-research** | Generates 1,000–3,500 validated keywords (LLM + AnswerThePublic + DataForSEO) with volume, difficulty, parent-keyword clusters, and an ROI-forecasted content plan. |
 | **keyword-database-article-map** | Maps every keyword to exactly one article (zero cannibalization) and produces a prioritized writing roadmap. |
-| **information-gain** | Surfaces rare, citable statistics from PDFs, government reports, and papers so your content has data competitors don't. |
+| **information-gain** | Surfaces rare, citable statistics from PDFs, government reports, and papers so the content has data competitors don't. |
 
 ### Content creation
 | Skill | What it does on its own |
 |-------|--------------------------|
 | **seo-content** | Turns a keyword/cluster into a complete, rankable article that reads like a human wrote it (structure, optimization, anti-AI voice). |
 | **comparison-pages** | Playbook for X-vs-Y, alternatives-to-X, and best-[category] roundups with feature-matrix + schema discipline for commercial-intent SERPs. |
-| **content-humanizer** | Rewrites robotic / AI-sounding drafts to sound genuinely human — removes AI tells and injects voice. |
+| **content-humanizer** | v3.0.0. Edits AI-sounding drafts until they read like a real person wrote them, without changing what they say: marks AI tells in six families, removes them, applies the brand voice, and checks the result with a humanity scorer and a fact diff. |
 | **faq-jsonld** | Generates FAQ structured data (JSON-LD) and manages it via a Shopify metafield. |
 
 ### On-page & technical SEO
 | Skill | What it does on its own |
 |-------|--------------------------|
 | **seo-onpage-audit** | Audits a live page's on-page + technical SEO (title/meta, headings, canonical, indexability, CWV) and returns a 0–100 score + fix list. |
-| **seo-page-diagnosis** | Diagnoses *why* a published article underperforms (SERP-backwards analysis, page-type mismatch) before you rewrite it. |
+| **seo-page-diagnosis** | Diagnoses *why* a published article underperforms (SERP-backwards analysis, page-type mismatch) before a rewrite. |
 | **seo-schema** | Generates & validates JSON-LD beyond FAQ — Article/BlogPosting, BreadcrumbList, Product, ItemList — plus the delivery method. |
 | **internal-linking** | Auto-inserts internal links into articles using semantic matching + anchor-text variation across a content cluster. |
 | **image-seo-audit** | Audits images for SEO + Core Web Vitals (alt text, size, format, dimensions, lazy-load, ImageObject schema). |
@@ -137,7 +137,9 @@ modified and folded into this skill framework, but credit where it's due:
   schema stack, editorial heuristics, cognitive-load and AI-tells checklists.
 
 The **content-humanizer** skill builds on an MIT-licensed skill by
-**Alireza Rezvani** (credited in that skill's frontmatter).
+**Alireza Rezvani** (credited in that skill's frontmatter). Version 3.0.0 follows
+the structure of [blader/humanizer](https://github.com/blader/humanizer) (MIT),
+with the rules written in this skill's own words.
 
 Individual files note their source inline where material was adapted. Classic
 marketing frameworks referenced by name (April Dunford's positioning, Eugene
@@ -149,3 +151,5 @@ heuristics) belong to their respective authors.
 *Structure:* each skill lives in its own folder with a `SKILL.md`; shared framework
 in `_system/` (brand-memory protocol, output format, JSON schemas, install / doctor
 scripts). Start with `/start-here`.
+
+File: README.md · Version 3.0.0 · November 2026
