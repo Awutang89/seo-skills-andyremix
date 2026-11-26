@@ -1,0 +1,16 @@
+{
+  "brand": "example-outdoor",
+  "store": "Example Outdoor Store",
+  "property_candidates": ["sc-domain:example-outdoor.com", "https://example-outdoor.com/"],
+  "owner_type": "own",
+  "brand_terms": ["example outdoor", "example-outdoor", "example-outdoor.com", "exampleoutdoor", "exo", "examplesub"],
+  "ambiguous_brand_terms": ["example outdoor"],
+  "not_brand_terms_note": "Supplier and manufacturer names (Supplier A, Supplier B, Supplier C and similar) are NOT our brand. Queries containing them are non-brand demand we compete for. Example Sub-brand (examplesub) counts as our brand and the short code exo is brand as a whole word (skills/_system/references/seo-shared-numbers.md section 6). EXAMPLE FILE: replace every value with your own store.",
+  "high_value_patterns": ["/products/", "/collections/", "/cart"],
+  "high_value_weight": 1.5,
+  "period_days": 28,
+  "ctr_curve_mode": "auto",
+  "inspection_budget": 10,
+  "register_path": "example-outdoor/KEYWORD-REGISTER.csv",
+  "run_root": "example-outdoor/gsc-runs"
+}

@@ -1,0 +1,70 @@
+{
+  "_use_when": "One or two numbers the person supplied are strong enough to carry an image and no real artifact exists. Every {PLACEHOLDER} must come from the person's source; never fill one with an example value.",
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "LinkedIn",
+    "role": "stat-card",
+    "aspect_ratio": "4:5",
+    "mobile_read": "The main number and its label must read without opening the image."
+  },
+  "reference_images": [],
+  "render_data": {
+    "exact_numbers": ["{BEFORE VALUE}", "{AFTER VALUE}", "{TIME PERIOD}"],
+    "exact_labels": ["{METRIC LABEL}"],
+    "do_not_invent": ["extra metrics", "testimonials", "client names", "industry benchmarks", "logos"]
+  },
+  "main_visual": {
+    "type": "stat card",
+    "description": "A plain before and after card: {METRIC LABEL} moving from {BEFORE VALUE} to {AFTER VALUE} over {TIME PERIOD}.",
+    "state_or_action": "Two large values with a small arrow between them.",
+    "important_details": ["before value on the left", "after value on the right", "time period as small context"]
+  },
+  "composition": {
+    "framing": "single centered graphic",
+    "angle": "straight on, flat",
+    "focal_point": "the after value",
+    "layout": "before value left, after value right, small arrow between, short label underneath, generous margins",
+    "annotation_plan": "No marks except the before and after arrow.",
+    "scroll_stop": "The oversized after value"
+  },
+  "camera_and_light": {
+    "camera_style": "clean editorial graphic",
+    "lens_or_view": "not applicable",
+    "depth_of_field": "none",
+    "lighting": "flat even light",
+    "texture": "none"
+  },
+  "style": {
+    "medium": "flat editorial graphic",
+    "polish_level": "branded but restrained",
+    "brand": {
+      "website": "Saved website, if any.",
+      "colors": ["Saved brand colors, if any; otherwise one dark ink color on off white."],
+      "logo_use": "none unless a real logo file is supplied as a reference image"
+    },
+    "avoid_style": ["3D numbers", "gradient blob background", "floating icons", "fake badges"]
+  },
+  "text_elements": [
+    {
+      "content": "{BEFORE VALUE} → {AFTER VALUE}",
+      "position": "center",
+      "typography": "very large bold sans",
+      "color": "highest contrast color",
+      "rules": "Include only this exact string, once."
+    },
+    {
+      "content": "{METRIC LABEL}, {TIME PERIOD}",
+      "position": "below the main number",
+      "typography": "small clean sans",
+      "color": "secondary text color",
+      "rules": "Include only this exact label, once."
+    }
+  ],
+  "constraints": [
+    "No claims beyond the two values and the label.",
+    "No fake logo.",
+    "No stock people.",
+    "Readable on mobile.",
+    "No watermark."
+  ]
+}

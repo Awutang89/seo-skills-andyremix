@@ -1,0 +1,71 @@
+{
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "X | Threads | LinkedIn",
+    "role": "raw-screenshot | annotated-screenshot | receipt-strip | chart | diagram | checklist | teardown-crop | stat-card | meme | lo-fi-photo | generated-scene",
+    "aspect_ratio": "1:1 | 4:5 | platform native crop",
+    "mobile_read": "What must be readable at phone feed size."
+  },
+  "reference_images": [
+    {
+      "image_id": 1,
+      "role": "base screenshot | style reference | logo | product | photo",
+      "use": "What to take from this image.",
+      "preserve": "What must not change.",
+      "allowed_changes": "crop, blur, annotate, recolor, place, or none"
+    }
+  ],
+  "render_data": {
+    "exact_numbers": ["Only numbers the person supplied."],
+    "exact_labels": ["Only labels the person supplied."],
+    "chart_data": "Exact values, axis labels, dates and units when the role is chart.",
+    "do_not_invent": ["metrics", "logos", "testimonials", "UI states", "customer names"]
+  },
+  "main_visual": {
+    "type": "screenshot | UI crop | email or DM receipt | chart | diagram | stat card | photo | scene",
+    "description": "What is visibly in the image, not why the post exists.",
+    "state_or_action": "What the object, person or UI is doing or showing.",
+    "important_details": ["Visible details only."]
+  },
+  "composition": {
+    "framing": "tight crop | medium shot | full object | top down | three quarter | isometric",
+    "angle": "eye level | low angle | high angle | top down | straight on | slight handheld tilt",
+    "focal_point": "Where the eye lands first.",
+    "layout": "Placement, spacing, hierarchy, negative space, safe areas.",
+    "annotation_plan": "Arrow, circle, highlight, blur or callout placement, if any.",
+    "scroll_stop": "The visible element that makes someone pause before reading the post."
+  },
+  "camera_and_light": {
+    "camera_style": "phone screenshot | phone photo | documentary photo | clean editorial graphic | flat diagram",
+    "lens_or_view": "50mm candid | 35mm documentary | top down phone shot | orthographic or isometric diagram | not applicable",
+    "depth_of_field": "none | deep focus | shallow background blur",
+    "lighting": "window light | screen glow | overcast daylight | flat even diagram light | soft studio",
+    "texture": "screen pixels, paper grain, compression, slight blur, imperfect crop, or none"
+  },
+  "style": {
+    "medium": "raw screenshot | annotated screenshot | simple diagram | stat card | photo",
+    "polish_level": "raw | lightly cleaned | branded but restrained",
+    "brand": {
+      "website": "Saved website URL, if any.",
+      "colors": ["Saved brand colors only."],
+      "logo_use": "none | small corner mark | preserve from reference image"
+    },
+    "avoid_style": ["AI glow", "generic gradients", "floating icons", "stock photo polish", "fake SaaS dashboard"]
+  },
+  "text_elements": [
+    {
+      "content": "Exact on-image text, if any.",
+      "position": "top left | center | callout label | beside arrow | none",
+      "typography": "large bold sans | handwritten annotation | small UI label",
+      "color": "high contrast color",
+      "rules": "Include only this text, exactly once. No other captions."
+    }
+  ],
+  "constraints": [
+    "No invented numbers, labels, logos, UI states, testimonials or customers.",
+    "No text beyond text_elements.",
+    "Readable on mobile.",
+    "One visual idea only.",
+    "No watermark."
+  ]
+}

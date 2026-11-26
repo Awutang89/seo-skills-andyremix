@@ -1,0 +1,68 @@
+{
+  "_use_when": "A real screenshot is the proof and needs one obvious callout. Fill {PLACEHOLDERS} from the person's material before generating.",
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "X or Threads",
+    "role": "annotated-screenshot",
+    "aspect_ratio": "1:1",
+    "mobile_read": "The red arrow and the short label must read at phone feed size."
+  },
+  "reference_images": [
+    {
+      "image_id": 1,
+      "role": "base screenshot",
+      "use": "The supplied screenshot is the whole image.",
+      "preserve": "Every real UI element, number, layout detail and visible state.",
+      "allowed_changes": "Tighter crop, blur of private details, one red arrow, one short yellow label."
+    }
+  ],
+  "render_data": {
+    "exact_numbers": [],
+    "exact_labels": ["this one"],
+    "do_not_invent": ["rows", "numbers", "logos", "UI states", "customer names"]
+  },
+  "main_visual": {
+    "type": "UI crop",
+    "description": "The person's real report screenshot with one row singled out: {ROW THE PERSON WANTS HIGHLIGHTED}.",
+    "state_or_action": "A hand drawn style arrow points at that row.",
+    "important_details": ["real screenshot texture", "slight compression", "nothing redesigned"]
+  },
+  "composition": {
+    "framing": "tight crop around the relevant row",
+    "angle": "straight on screenshot",
+    "focal_point": "the highlighted row",
+    "layout": "red arrow comes in from lower left; label sits beside the arrow without covering data",
+    "annotation_plan": "One red arrow and one label reading \"this one\".",
+    "scroll_stop": "A rough red arrow on a real screen"
+  },
+  "camera_and_light": {
+    "camera_style": "phone screenshot",
+    "lens_or_view": "not applicable",
+    "depth_of_field": "none",
+    "lighting": "not applicable",
+    "texture": "screen pixels and light compression"
+  },
+  "style": {
+    "medium": "annotated screenshot",
+    "polish_level": "raw",
+    "brand": {"website": "", "colors": [], "logo_use": "preserve from reference image"},
+    "avoid_style": ["redrawn UI", "AI glow", "clean vector recreation"]
+  },
+  "text_elements": [
+    {
+      "content": "this one",
+      "position": "beside arrow",
+      "typography": "bold handwritten annotation",
+      "color": "yellow on dark or red on light, whichever contrasts",
+      "rules": "Include only this text, exactly once."
+    }
+  ],
+  "constraints": [
+    "Do not recreate or redraw the screenshot.",
+    "No new rows, numbers, logos or UI states.",
+    "No text other than \"this one\".",
+    "Blur any customer names, emails or order numbers.",
+    "Readable on mobile.",
+    "No watermark."
+  ]
+}
