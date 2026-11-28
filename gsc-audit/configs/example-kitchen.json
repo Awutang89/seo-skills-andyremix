@@ -1,0 +1,16 @@
+{
+  "brand": "example-kitchen",
+  "store": "Example Kitchen",
+  "property_candidates": ["sc-domain:example.com", "https://example.com/"],
+  "owner_type": "own",
+  "brand_terms": ["example kitchen", "example-kitchen", "examplekitchen", "example.com", "exk"],
+  "ambiguous_brand_terms": ["example kitchen"],
+  "not_brand_terms_note": "Names of other makers the site sells (Maker A, Maker B and similar) are NOT our brand. Queries containing them are non-brand demand we compete for. The short code exk is brand as a whole word. EXAMPLE FILE: replace every value with your own site.",
+  "high_value_patterns": ["/products/", "/collections/", "/cart"],
+  "high_value_weight": 1.5,
+  "period_days": 28,
+  "ctr_curve_mode": "auto",
+  "inspection_budget": 10,
+  "register_path": "example-kitchen/KEYWORD-REGISTER.csv",
+  "run_root": "example-kitchen/gsc-runs"
+}

@@ -1,0 +1,58 @@
+{
+  "_use_when": "The post wants a human, work in progress feel, not proof. A real photo from the person always beats generating this. If generated, it is a mood image and the post must not treat it as evidence.",
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "X or Threads",
+    "role": "lo-fi-photo",
+    "aspect_ratio": "1:1",
+    "mobile_read": "The handwritten note and the cluttered work setup should be recognisable."
+  },
+  "reference_images": [],
+  "render_data": {
+    "exact_numbers": [],
+    "exact_labels": ["{SHORT PHRASE FROM THE PERSON'S NOTES}"],
+    "do_not_invent": ["brand logos", "readable screen content", "numbers"]
+  },
+  "main_visual": {
+    "type": "photo",
+    "description": "A casual phone photo of an open notebook next to a laptop, with a rough handwritten list on the page.",
+    "state_or_action": "Notebook open on a desk, laptop corner in frame, a mug cut off by the edge.",
+    "important_details": ["imperfect crop", "real desk clutter", "handwriting", "nothing staged"]
+  },
+  "composition": {
+    "framing": "top down phone shot with a slight handheld tilt",
+    "angle": "high angle, casual",
+    "focal_point": "the handwritten list",
+    "layout": "notebook lower center, laptop corner top left, mug half out of frame",
+    "annotation_plan": "None.",
+    "scroll_stop": "The messy handwriting"
+  },
+  "camera_and_light": {
+    "camera_style": "phone photo",
+    "lens_or_view": "wide phone lens",
+    "depth_of_field": "deep focus",
+    "lighting": "window light mixed with laptop screen glow",
+    "texture": "slight motion softness, paper grain, ordinary phone noise"
+  },
+  "style": {
+    "medium": "raw phone photo",
+    "polish_level": "raw",
+    "brand": {"website": "", "colors": [], "logo_use": "none"},
+    "avoid_style": ["studio lighting", "perfect flat lay", "stock photo hands", "spotless desk"]
+  },
+  "text_elements": [
+    {
+      "content": "{SHORT PHRASE FROM THE PERSON'S NOTES}",
+      "position": "top of the notebook page",
+      "typography": "messy handwriting",
+      "color": "dark ink",
+      "rules": "The only readable writing in the image."
+    }
+  ],
+  "constraints": [
+    "No brand logos.",
+    "No other readable text.",
+    "No polished commercial flat lay.",
+    "No watermark."
+  ]
+}

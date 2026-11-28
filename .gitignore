@@ -3,6 +3,7 @@
 .env.local
 *.key
 .dataforseo-config.json
+.secrets/
 
 # Python
 __pycache__/

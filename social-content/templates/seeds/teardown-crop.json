@@ -1,0 +1,67 @@
+{
+  "_use_when": "One spot on a page, ad, email, search result or product screen teaches the lesson. Needs the person's real screenshot as the base; without it, send a capture brief instead.",
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "LinkedIn",
+    "role": "teardown-crop",
+    "aspect_ratio": "1:1",
+    "mobile_read": "The circled area and the short callout must read on a phone."
+  },
+  "reference_images": [
+    {
+      "image_id": 1,
+      "role": "base webpage screenshot",
+      "use": "The supplied page screenshot is the base image.",
+      "preserve": "The real layout and all visible copy.",
+      "allowed_changes": "Crop to the relevant section, blur private details, add one circle, one arrow and one label."
+    }
+  ],
+  "render_data": {
+    "exact_numbers": [],
+    "exact_labels": ["{CALLOUT, 2 TO 5 WORDS, IN THE PERSON'S WORDS}"],
+    "do_not_invent": ["analytics", "brand elements", "page copy", "prices"]
+  },
+  "main_visual": {
+    "type": "website crop",
+    "description": "A cropped section of the supplied page with {THE ELEMENT THE PERSON IS CRITIQUING} circled.",
+    "state_or_action": "That element is circled and labeled.",
+    "important_details": ["real page crop", "one circle", "one short callout"]
+  },
+  "composition": {
+    "framing": "tight crop around the element and its surroundings",
+    "angle": "straight on screenshot",
+    "focal_point": "the circled element",
+    "layout": "circle around the element, label above right with an arrow into the circle",
+    "annotation_plan": "One red circle, one red arrow, one label.",
+    "scroll_stop": "A red circle around a real page detail"
+  },
+  "camera_and_light": {
+    "camera_style": "phone screenshot",
+    "lens_or_view": "not applicable",
+    "depth_of_field": "none",
+    "lighting": "not applicable",
+    "texture": "screen pixels"
+  },
+  "style": {
+    "medium": "annotated screenshot",
+    "polish_level": "raw",
+    "brand": {"website": "", "colors": [], "logo_use": "preserve from reference image"},
+    "avoid_style": ["redesigned page", "mockup frame", "AI glow"]
+  },
+  "text_elements": [
+    {
+      "content": "{CALLOUT, 2 TO 5 WORDS, IN THE PERSON'S WORDS}",
+      "position": "above right of the circle",
+      "typography": "bold handwritten annotation",
+      "color": "red",
+      "rules": "Include only this text, exactly once."
+    }
+  ],
+  "constraints": [
+    "Do not redesign the page.",
+    "No fake analytics.",
+    "No invented brand elements.",
+    "Readable on mobile.",
+    "No watermark."
+  ]
+}
