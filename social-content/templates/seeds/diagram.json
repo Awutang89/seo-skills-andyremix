@@ -1,0 +1,55 @@
+{
+  "_use_when": "The value is a workflow, decision tree or mental model. This example shows a three step posting workflow; swap in the person's own steps.",
+  "output": {
+    "asset_type": "single social feed image",
+    "platform": "LinkedIn or X",
+    "role": "diagram",
+    "aspect_ratio": "1:1",
+    "mobile_read": "Three boxes and their arrows must read in the feed."
+  },
+  "reference_images": [],
+  "render_data": {
+    "exact_numbers": [],
+    "exact_labels": ["draft", "proof check", "publish"],
+    "do_not_invent": ["extra steps", "metrics", "logos"]
+  },
+  "main_visual": {
+    "type": "diagram",
+    "description": "A three step workflow: a draft passes a proof check before it is published.",
+    "state_or_action": "Three connected boxes read left to right.",
+    "important_details": ["three equal boxes", "thick arrows", "the middle step is emphasised"]
+  },
+  "composition": {
+    "framing": "straight on diagram",
+    "angle": "flat orthographic",
+    "focal_point": "the middle box labeled \"proof check\"",
+    "layout": "three equal boxes left to right, thick arrows between, wide spacing, no extra panels",
+    "annotation_plan": "One small red dot on the middle box only.",
+    "scroll_stop": "The red dot on the middle box"
+  },
+  "camera_and_light": {
+    "camera_style": "clean editorial graphic",
+    "lens_or_view": "orthographic diagram",
+    "depth_of_field": "none",
+    "lighting": "flat even diagram light",
+    "texture": "none"
+  },
+  "style": {
+    "medium": "simple diagram",
+    "polish_level": "lightly cleaned",
+    "brand": {"website": "", "colors": [], "logo_use": "none"},
+    "avoid_style": ["isometric 3D", "gradients", "floating icons", "drop shadows"]
+  },
+  "text_elements": [
+    {"content": "draft", "position": "left box", "typography": "large clean sans", "color": "dark text", "rules": "Exactly once."},
+    {"content": "proof check", "position": "middle box", "typography": "large clean sans", "color": "dark text", "rules": "Exactly once."},
+    {"content": "publish", "position": "right box", "typography": "large clean sans", "color": "dark text", "rules": "Exactly once."}
+  ],
+  "constraints": [
+    "Only three boxes.",
+    "No other text.",
+    "Icons, if any, limited to a pencil, a check mark and a send arrow.",
+    "Readable on mobile.",
+    "No watermark."
+  ]
+}
